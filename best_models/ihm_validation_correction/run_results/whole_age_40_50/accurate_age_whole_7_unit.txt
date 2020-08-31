@@ -1,0 +1,3354 @@
+*****************seven_unit**************
+Using TensorFlow backend.
+Namespace(batch_norm=False, batch_size=8, beta_1=0.9, data='/home/danfeng/sharmin/mimic3-benchmarks/mimic3models/in_hospital_mortality/../../data/in-hospital-mortality/', depth=2, dim=16, dropout=0.3, epochs=100, imputation='previous', l1=0, l2=0, load_state='', lr=0.001, mode='train', network='mimic3models/keras_models/lstm.py', normalizer_state=None, optimizer='adam', output_dir='mimic3models/in_hospital_mortality', prefix='', rec_dropout=0.0, save_every=1, size_coef=4.0, small_part=False, target_repl_coef=0.0, timestep=1.0, verbose=2)
+==> using model mimic3models/keras_models/lstm.py
+==> not used params in network class: dict_keys(['load_state', 'mode', 'batch_size', 'small_part', 'target_repl_coef', 'imputation', 'beta_1', 'verbose', 'prefix', 'l2', 'lr', 'normalizer_state', 'timestep', 'data', 'size_coef', 'save_every', 'epochs', 'network', 'l1', 'optimizer', 'output_dir', 'header'])
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1364: calling reduce_any (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1247: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+==> model.final_name: k_lstm.n16.d0.3.dep2.bs8.ts1.0
+==> compiling the model
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1349: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+X (InputLayer)               (None, None, 76)          0         
+_________________________________________________________________
+masking_1 (Masking)          (None, None, 76)          0         
+_________________________________________________________________
+bidirectional_1 (Bidirection (None, None, 16)          5440      
+_________________________________________________________________
+lstm_2 (LSTM)                (None, 16)                2112      
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 16)                0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 17        
+=================================================================
+Total params: 7,569
+Trainable params: 7,569
+Non-trainable params: 0
+_________________________________________________________________
+==> training
+Train on 23609 samples, validate on 3222 samples
+Epoch 1/100
+2020-08-28 13:03:47.222477: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2020-08-28 13:03:47.448792: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:897] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-28 13:03:47.449914: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1405] Found device 0 with properties: 
+name: GRID P40-12Q major: 6 minor: 1 memoryClockRate(GHz): 1.531
+pciBusID: 0000:00:0a.0
+totalMemory: 12.00GiB freeMemory: 703.86MiB
+2020-08-28 13:03:47.449941: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1484] Adding visible gpu devices: 0
+2020-08-28 13:03:47.722746: I tensorflow/core/common_runtime/gpu/gpu_device.cc:965] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-28 13:03:47.722822: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971]      0 
+2020-08-28 13:03:47.722831: I tensorflow/core/common_runtime/gpu/gpu_device.cc:984] 0:   N 
+2020-08-28 13:03:47.722997: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1097] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 416 MB memory) -> physical GPU (device: 0, name: GRID P40-12Q, pci bus id: 0000:00:0a.0, compute capability: 6.1)
+
+==>predicting on train
+
+
+confusion matrix:
+[[20416   342]
+ [ 2240   611]]
+accuracy = 0.8906349539756775
+precision class 0 = 0.901129961013794
+precision class 1 = 0.6411332488059998
+recall class 0 = 0.9835244417190552
+recall class 1 = 0.21431076526641846
+AUC of ROC = 0.8446710263273765
+AUC of PRC = 0.5010954850747356
+min(+P, Se) = 0.4980708523325149
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2748   38]
+ [ 351   85]]
+accuracy = 0.8792675137519836
+precision class 0 = 0.8867376446723938
+precision class 1 = 0.6910569071769714
+recall class 0 = 0.9863603711128235
+recall class 1 = 0.19495412707328796
+AUC of ROC = 0.8291951237181977
+AUC of PRC = 0.4885126866700286
+min(+P, Se) = 0.48291571753986334
+Epoch 00001: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch1.test0.31989238803372627.state
+ - 856s - loss: 0.3110 - val_loss: 0.3199
+Epoch 2/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20041   717]
+ [ 1638  1213]]
+accuracy = 0.9002498984336853
+precision class 0 = 0.9244430065155029
+precision class 1 = 0.6284974217414856
+recall class 0 = 0.9654591083526611
+recall class 1 = 0.4254647493362427
+AUC of ROC = 0.8598622130074118
+AUC of PRC = 0.5585298028671011
+min(+P, Se) = 0.5177130831287268
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2677  109]
+ [ 280  156]]
+accuracy = 0.8792675137519836
+precision class 0 = 0.9053094387054443
+precision class 1 = 0.5886792540550232
+recall class 0 = 0.9608758091926575
+recall class 1 = 0.35779815912246704
+AUC of ROC = 0.8366035617142067
+AUC of PRC = 0.5123182277525787
+min(+P, Se) = 0.5
+Epoch 00002: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch2.test0.29877906019350225.state
+ - 778s - loss: 0.2861 - val_loss: 0.2988
+Epoch 3/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20594   164]
+ [ 2182   669]]
+accuracy = 0.9006311297416687
+precision class 0 = 0.9041973948478699
+precision class 1 = 0.8031212687492371
+recall class 0 = 0.992099404335022
+recall class 1 = 0.234654501080513
+AUC of ROC = 0.869449165643507
+AUC of PRC = 0.5773763520217541
+min(+P, Se) = 0.5402860132542727
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2751   35]
+ [ 354   82]]
+accuracy = 0.8792675137519836
+precision class 0 = 0.8859903216362
+precision class 1 = 0.7008547186851501
+recall class 0 = 0.9874371886253357
+recall class 1 = 0.18807339668273926
+AUC of ROC = 0.8439420233539915
+AUC of PRC = 0.5251083446361413
+min(+P, Se) = 0.5045871559633027
+Epoch 00003: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch3.test0.29608984425210716.state
+ - 775s - loss: 0.2763 - val_loss: 0.2961
+Epoch 4/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20457   301]
+ [ 1856   995]]
+accuracy = 0.9086365103721619
+precision class 0 = 0.9168198108673096
+precision class 1 = 0.7677469253540039
+recall class 0 = 0.9854995608329773
+recall class 1 = 0.34900036454200745
+AUC of ROC = 0.8740738295013245
+AUC of PRC = 0.595710640184973
+min(+P, Se) = 0.552945301542777
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2720   66]
+ [ 312  124]]
+accuracy = 0.8826815485954285
+precision class 0 = 0.897097647190094
+precision class 1 = 0.6526315808296204
+recall class 0 = 0.976310133934021
+recall class 1 = 0.2844036817550659
+AUC of ROC = 0.8444680809025468
+AUC of PRC = 0.5308449661471953
+min(+P, Se) = 0.4988558352402746
+Epoch 00004: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch4.test0.29113598131360213.state
+ - 785s - loss: 0.2717 - val_loss: 0.2911
+Epoch 5/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20533   225]
+ [ 2004   847]]
+accuracy = 0.905586838722229
+precision class 0 = 0.9110795855522156
+precision class 1 = 0.7901119589805603
+recall class 0 = 0.9891607761383057
+recall class 1 = 0.29708874225616455
+AUC of ROC = 0.8784719090354889
+AUC of PRC = 0.6025747392607479
+min(+P, Se) = 0.5559452823570677
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2737   49]
+ [ 328  108]]
+accuracy = 0.8829919099807739
+precision class 0 = 0.8929853439331055
+precision class 1 = 0.6878980994224548
+recall class 0 = 0.9824120402336121
+recall class 1 = 0.24770642817020416
+AUC of ROC = 0.8444861924300402
+AUC of PRC = 0.5319723601258914
+min(+P, Se) = 0.5114155251141552
+Epoch 00005: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch5.test0.2955201215380693.state
+ - 786s - loss: 0.2674 - val_loss: 0.2955
+Epoch 6/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20650   108]
+ [ 2153   698]]
+accuracy = 0.9042314291000366
+precision class 0 = 0.90558260679245
+precision class 1 = 0.8660049438476562
+recall class 0 = 0.9947971701622009
+recall class 1 = 0.24482637643814087
+AUC of ROC = 0.8828552287794518
+AUC of PRC = 0.6134419054539527
+min(+P, Se) = 0.5668186601192564
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2759   27]
+ [ 353   83]]
+accuracy = 0.8820608258247375
+precision class 0 = 0.8865681290626526
+precision class 1 = 0.7545454502105713
+recall class 0 = 0.9903087019920349
+recall class 1 = 0.1903669685125351
+AUC of ROC = 0.8474466039239447
+AUC of PRC = 0.5349594809107672
+min(+P, Se) = 0.5068807339449541
+Epoch 00006: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch6.test0.29867223247857955.state
+ - 785s - loss: 0.2631 - val_loss: 0.2987
+Epoch 7/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20537   221]
+ [ 1916   935]]
+accuracy = 0.9094836711883545
+precision class 0 = 0.9146661758422852
+precision class 1 = 0.8088235259056091
+recall class 0 = 0.9893534779548645
+recall class 1 = 0.32795509696006775
+AUC of ROC = 0.8877129908694772
+AUC of PRC = 0.6238379100603209
+min(+P, Se) = 0.5826025955804981
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2725   61]
+ [ 323  113]]
+accuracy = 0.8808193802833557
+precision class 0 = 0.8940288424491882
+precision class 1 = 0.6494252681732178
+recall class 0 = 0.978104829788208
+recall class 1 = 0.25917431712150574
+AUC of ROC = 0.8515093488411917
+AUC of PRC = 0.5339016591933937
+min(+P, Se) = 0.517162471395881
+Epoch 00007: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch7.test0.29440170357236206.state
+ - 822s - loss: 0.2605 - val_loss: 0.2944
+Epoch 8/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20618   140]
+ [ 2065   786]]
+accuracy = 0.9066033959388733
+precision class 0 = 0.9089626669883728
+precision class 1 = 0.8488121032714844
+recall class 0 = 0.993255615234375
+recall class 1 = 0.27569273114204407
+AUC of ROC = 0.8949356312622866
+AUC of PRC = 0.6384895654248044
+min(+P, Se) = 0.5861101367941073
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2747   39]
+ [ 336  100]]
+accuracy = 0.8836126923561096
+precision class 0 = 0.8910152316093445
+precision class 1 = 0.7194244861602783
+recall class 0 = 0.9860014319419861
+recall class 1 = 0.2293577939271927
+AUC of ROC = 0.8525482919183072
+AUC of PRC = 0.5389905956333182
+min(+P, Se) = 0.5148063781321185
+Epoch 00008: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch8.test0.2938403865515557.state
+ - 923s - loss: 0.2595 - val_loss: 0.2938
+Epoch 9/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20349   409]
+ [ 1631  1220]]
+accuracy = 0.9135922789573669
+precision class 0 = 0.9257961511611938
+precision class 1 = 0.7489257454872131
+recall class 0 = 0.9802967309951782
+recall class 1 = 0.42792001366615295
+AUC of ROC = 0.8975391078679262
+AUC of PRC = 0.6425753584564547
+min(+P, Se) = 0.5813464235624124
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2698   88]
+ [ 283  153]]
+accuracy = 0.8848541378974915
+precision class 0 = 0.9050654172897339
+precision class 1 = 0.634854793548584
+recall class 0 = 0.9684134721755981
+recall class 1 = 0.35091742873191833
+AUC of ROC = 0.8546978009312618
+AUC of PRC = 0.5397875758963384
+min(+P, Se) = 0.5252293577981652
+Epoch 00009: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch9.test0.28742863126862206.state
+ - 919s - loss: 0.2551 - val_loss: 0.2874
+Epoch 10/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20421   337]
+ [ 1643  1208]]
+accuracy = 0.9161337018013
+precision class 0 = 0.9255347847938538
+precision class 1 = 0.7818770408630371
+recall class 0 = 0.9837653040885925
+recall class 1 = 0.42371097207069397
+AUC of ROC = 0.9028794652505199
+AUC of PRC = 0.6632063498895802
+min(+P, Se) = 0.6008418098912662
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2707   79]
+ [ 296  140]]
+accuracy = 0.8836126923561096
+precision class 0 = 0.9014319181442261
+precision class 1 = 0.6392694115638733
+recall class 0 = 0.9716439247131348
+recall class 1 = 0.3211009204387665
+AUC of ROC = 0.8545685504850595
+AUC of PRC = 0.5416961082753424
+min(+P, Se) = 0.5229357798165137
+Epoch 00010: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch10.test0.290700228363368.state
+ - 908s - loss: 0.2515 - val_loss: 0.2907
+Epoch 11/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20475   283]
+ [ 1679  1172]]
+accuracy = 0.9168961048126221
+precision class 0 = 0.9242123365402222
+precision class 1 = 0.8054983019828796
+recall class 0 = 0.9863666892051697
+recall class 1 = 0.41108381748199463
+AUC of ROC = 0.9013761801960352
+AUC of PRC = 0.6618348312833694
+min(+P, Se) = 0.6001403016485444
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2716   70]
+ [ 303  133]]
+accuracy = 0.8842334151268005
+precision class 0 = 0.8996356129646301
+precision class 1 = 0.6551724076271057
+recall class 0 = 0.9748743772506714
+recall class 1 = 0.30504587292671204
+AUC of ROC = 0.8567155897442653
+AUC of PRC = 0.5495510547294119
+min(+P, Se) = 0.5321100917431193
+Epoch 00011: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch11.test0.2950463584958952.state
+ - 899s - loss: 0.2513 - val_loss: 0.2950
+Epoch 12/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20539   219]
+ [ 1752  1099]]
+accuracy = 0.9165148735046387
+precision class 0 = 0.9214032292366028
+precision class 1 = 0.8338391780853271
+recall class 0 = 0.9894498586654663
+recall class 1 = 0.38547876477241516
+AUC of ROC = 0.9026287515846708
+AUC of PRC = 0.6624435439547485
+min(+P, Se) = 0.59593837535014
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2727   59]
+ [ 316  120]]
+accuracy = 0.8836126923561096
+precision class 0 = 0.8961551189422607
+precision class 1 = 0.6703910827636719
+recall class 0 = 0.9788227081298828
+recall class 1 = 0.2752293646335602
+AUC of ROC = 0.8545413831938197
+AUC of PRC = 0.5454638917575182
+min(+P, Se) = 0.5298165137614679
+Epoch 00012: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch12.test0.2854340355369262.state
+ - 892s - loss: 0.2508 - val_loss: 0.2854
+Epoch 13/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20562   196]
+ [ 1811  1040]]
+accuracy = 0.9149900674819946
+precision class 0 = 0.9190542101860046
+precision class 1 = 0.8414239287376404
+recall class 0 = 0.990557849407196
+recall class 1 = 0.364784300327301
+AUC of ROC = 0.9053215135153548
+AUC of PRC = 0.6754171691462525
+min(+P, Se) = 0.6141704665029815
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2737   49]
+ [ 319  117]]
+accuracy = 0.8857852220535278
+precision class 0 = 0.8956151604652405
+precision class 1 = 0.7048192620277405
+recall class 0 = 0.9824120402336121
+recall class 1 = 0.2683486342430115
+AUC of ROC = 0.8526660168470136
+AUC of PRC = 0.5453983321644726
+min(+P, Se) = 0.5263157894736842
+Epoch 00013: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch13.test0.2881594722007166.state
+ - 901s - loss: 0.2470 - val_loss: 0.2882
+Epoch 14/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20590   168]
+ [ 1806  1045]]
+accuracy = 0.9163877964019775
+precision class 0 = 0.9193605780601501
+precision class 1 = 0.8615003824234009
+recall class 0 = 0.9919067621231079
+recall class 1 = 0.36653804779052734
+AUC of ROC = 0.9062910551548435
+AUC of PRC = 0.6806840946104782
+min(+P, Se) = 0.6103121711680112
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2733   53]
+ [ 323  113]]
+accuracy = 0.8833022713661194
+precision class 0 = 0.8943063020706177
+precision class 1 = 0.6807228922843933
+recall class 0 = 0.9809762835502625
+recall class 1 = 0.25917431712150574
+AUC of ROC = 0.8552683140473006
+AUC of PRC = 0.5393934704598774
+min(+P, Se) = 0.5114678899082569
+Epoch 00014: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch14.test0.2924820817613883.state
+ - 918s - loss: 0.2422 - val_loss: 0.2925
+Epoch 15/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20580   178]
+ [ 1778  1073]]
+accuracy = 0.9171502590179443
+precision class 0 = 0.9204759001731873
+precision class 1 = 0.8577138185501099
+recall class 0 = 0.9914249777793884
+recall class 1 = 0.37635916471481323
+AUC of ROC = 0.9105380474948589
+AUC of PRC = 0.6900231993409836
+min(+P, Se) = 0.6232900736583655
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2730   56]
+ [ 320  116]]
+accuracy = 0.8833022713661194
+precision class 0 = 0.8950819969177246
+precision class 1 = 0.6744186282157898
+recall class 0 = 0.979899525642395
+recall class 1 = 0.26605504751205444
+AUC of ROC = 0.8534439892779757
+AUC of PRC = 0.5451764236867775
+min(+P, Se) = 0.5205479452054794
+Epoch 00015: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch15.test0.2972582433856029.state
+ - 923s - loss: 0.2423 - val_loss: 0.2973
+Epoch 16/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20445   313]
+ [ 1532  1319]]
+accuracy = 0.9218518137931824
+precision class 0 = 0.9302907586097717
+precision class 1 = 0.8082107901573181
+recall class 0 = 0.9849214553833008
+recall class 1 = 0.46264469623565674
+AUC of ROC = 0.9105501797551507
+AUC of PRC = 0.6912369675360117
+min(+P, Se) = 0.6235541535226078
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2698   88]
+ [ 290  146]]
+accuracy = 0.8826815485954285
+precision class 0 = 0.9029451012611389
+precision class 1 = 0.6239316463470459
+recall class 0 = 0.9684134721755981
+recall class 1 = 0.3348623812198639
+AUC of ROC = 0.8460371977844662
+AUC of PRC = 0.5307037420712774
+min(+P, Se) = 0.5
+Epoch 00016: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch16.test0.2947628800864178.state
+ - 985s - loss: 0.2419 - val_loss: 0.2948
+Epoch 17/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20472   286]
+ [ 1613  1238]]
+accuracy = 0.9195645451545715
+precision class 0 = 0.9269639849662781
+precision class 1 = 0.8123359680175781
+recall class 0 = 0.9862222075462341
+recall class 1 = 0.4342336058616638
+AUC of ROC = 0.915761576955924
+AUC of PRC = 0.6993865064885947
+min(+P, Se) = 0.625261688764829
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2710   76]
+ [ 309  127]]
+accuracy = 0.8805090188980103
+precision class 0 = 0.8976482152938843
+precision class 1 = 0.6256157755851746
+recall class 0 = 0.972720742225647
+recall class 1 = 0.2912844121456146
+AUC of ROC = 0.8522231076746775
+AUC of PRC = 0.5362180929783679
+min(+P, Se) = 0.5229357798165137
+Epoch 00017: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch17.test0.29253307547741686.state
+ - 976s - loss: 0.2373 - val_loss: 0.2925
+Epoch 18/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20518   240]
+ [ 1644  1207]]
+accuracy = 0.9201999306678772
+precision class 0 = 0.9258189797401428
+precision class 1 = 0.8341395854949951
+recall class 0 = 0.9884381890296936
+recall class 1 = 0.4233602285385132
+AUC of ROC = 0.9141424355745719
+AUC of PRC = 0.7020802085885782
+min(+P, Se) = 0.630305156085584
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2712   74]
+ [ 308  128]]
+accuracy = 0.8814401030540466
+precision class 0 = 0.8980132341384888
+precision class 1 = 0.6336633563041687
+recall class 0 = 0.9734386205673218
+recall class 1 = 0.29357796907424927
+AUC of ROC = 0.8553218253785309
+AUC of PRC = 0.5403399125847789
+min(+P, Se) = 0.5114678899082569
+Epoch 00018: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch18.test0.29119872198683516.state
+ - 979s - loss: 0.2389 - val_loss: 0.2912
+Epoch 19/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20392   366]
+ [ 1478  1373]]
+accuracy = 0.9218941926956177
+precision class 0 = 0.9324188232421875
+precision class 1 = 0.7895342111587524
+recall class 0 = 0.9823682308197021
+recall class 1 = 0.48158541321754456
+AUC of ROC = 0.9180310869062192
+AUC of PRC = 0.7072809677768485
+min(+P, Se) = 0.629292221443588
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2688   98]
+ [ 286  150]]
+accuracy = 0.8808193802833557
+precision class 0 = 0.9038332104682922
+precision class 1 = 0.6048387289047241
+recall class 0 = 0.9648241400718689
+recall class 1 = 0.34403669834136963
+AUC of ROC = 0.8537485922403629
+AUC of PRC = 0.5352490413450125
+min(+P, Se) = 0.5155555555555555
+Epoch 00019: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch19.test0.29250505260434084.state
+ - 987s - loss: 0.2367 - val_loss: 0.2925
+Epoch 20/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20580   178]
+ [ 1716  1135]]
+accuracy = 0.9197763800621033
+precision class 0 = 0.9230355024337769
+precision class 1 = 0.8644325733184814
+recall class 0 = 0.9914249777793884
+recall class 1 = 0.3981059193611145
+AUC of ROC = 0.9199544979408782
+AUC of PRC = 0.7153915810759348
+min(+P, Se) = 0.6464398456681866
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2726   60]
+ [ 317  119]]
+accuracy = 0.8829919099807739
+precision class 0 = 0.8958264589309692
+precision class 1 = 0.6648044586181641
+recall class 0 = 0.9784637689590454
+recall class 1 = 0.27293577790260315
+AUC of ROC = 0.8493120912557546
+AUC of PRC = 0.5341248800854907
+min(+P, Se) = 0.5240274599542334
+Epoch 00020: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch20.test0.3004338164772771.state
+ - 974s - loss: 0.2341 - val_loss: 0.3004
+Epoch 21/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20410   348]
+ [ 1449  1402]]
+accuracy = 0.9238849878311157
+precision class 0 = 0.9337115287780762
+precision class 1 = 0.8011428713798523
+recall class 0 = 0.9832353591918945
+recall class 1 = 0.49175727367401123
+AUC of ROC = 0.920185103821564
+AUC of PRC = 0.7137248936183527
+min(+P, Se) = 0.6404770256050508
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2690   96]
+ [ 287  149]]
+accuracy = 0.8811297416687012
+precision class 0 = 0.9035941958427429
+precision class 1 = 0.6081632375717163
+recall class 0 = 0.9655420184135437
+recall class 1 = 0.3417431116104126
+AUC of ROC = 0.8524231577283534
+AUC of PRC = 0.5376409469151577
+min(+P, Se) = 0.5068807339449541
+Epoch 00021: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch21.test0.2935404764346126.state
+ - 998s - loss: 0.2353 - val_loss: 0.2935
+Epoch 22/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20355   403]
+ [ 1388  1463]]
+accuracy = 0.9241390824317932
+precision class 0 = 0.9361633658409119
+precision class 1 = 0.784030020236969
+recall class 0 = 0.9805858135223389
+recall class 1 = 0.5131532549858093
+AUC of ROC = 0.9202626201782335
+AUC of PRC = 0.7195379397258242
+min(+P, Se) = 0.644686075061382
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2672  114]
+ [ 270  166]]
+accuracy = 0.8808193802833557
+precision class 0 = 0.9082257151603699
+precision class 1 = 0.5928571224212646
+recall class 0 = 0.9590811133384705
+recall class 1 = 0.3807339370250702
+AUC of ROC = 0.8515159348511891
+AUC of PRC = 0.5284059143083591
+min(+P, Se) = 0.5160550458715596
+Epoch 00022: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch22.test0.3006124310357315.state
+ - 984s - loss: 0.2354 - val_loss: 0.3006
+Epoch 23/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20585   173]
+ [ 1613  1238]]
+accuracy = 0.9243508577346802
+precision class 0 = 0.927335798740387
+precision class 1 = 0.8773919343948364
+recall class 0 = 0.9916658401489258
+recall class 1 = 0.4342336058616638
+AUC of ROC = 0.92340234944769
+AUC of PRC = 0.7293765387083448
+min(+P, Se) = 0.6566117151876535
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2729   57]
+ [ 319  117]]
+accuracy = 0.8833022713661194
+precision class 0 = 0.8953412175178528
+precision class 1 = 0.6724137663841248
+recall class 0 = 0.9795405864715576
+recall class 1 = 0.2683486342430115
+AUC of ROC = 0.8485184770510482
+AUC of PRC = 0.5328056139756951
+min(+P, Se) = 0.5022935779816514
+Epoch 00023: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch23.test0.29286656007494416.state
+ - 988s - loss: 0.2353 - val_loss: 0.2929
+Epoch 24/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20545   213]
+ [ 1579  1272]]
+accuracy = 0.9240967631340027
+precision class 0 = 0.9286295175552368
+precision class 1 = 0.8565656542778015
+recall class 0 = 0.9897388815879822
+recall class 1 = 0.4461592435836792
+AUC of ROC = 0.9166111393277221
+AUC of PRC = 0.7167393697693402
+min(+P, Se) = 0.6409090909090909
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2712   74]
+ [ 307  129]]
+accuracy = 0.8817504644393921
+precision class 0 = 0.8983107209205627
+precision class 1 = 0.6354680061340332
+recall class 0 = 0.9734386205673218
+recall class 1 = 0.2958715558052063
+AUC of ROC = 0.8562430435269399
+AUC of PRC = 0.5396913438276295
+min(+P, Se) = 0.518348623853211
+Epoch 00024: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch24.test0.2946562100731387.state
+ - 989s - loss: 0.2297 - val_loss: 0.2947
+Epoch 25/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20464   294]
+ [ 1482  1369]]
+accuracy = 0.9247744679450989
+precision class 0 = 0.9324706196784973
+precision class 1 = 0.8232110738754272
+recall class 0 = 0.9858368039131165
+recall class 1 = 0.48018237948417664
+AUC of ROC = 0.9213202896778223
+AUC of PRC = 0.7203614593626112
+min(+P, Se) = 0.6457383374254647
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2697   89]
+ [ 293  143]]
+accuracy = 0.8814401030540466
+precision class 0 = 0.9020066857337952
+precision class 1 = 0.6163793206214905
+recall class 0 = 0.9680545330047607
+recall class 1 = 0.3279816508293152
+AUC of ROC = 0.8498290930405632
+AUC of PRC = 0.5243013084423831
+min(+P, Se) = 0.5114155251141552
+Epoch 00025: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch25.test0.29848367034057.state
+ - 974s - loss: 0.2325 - val_loss: 0.2985
+Epoch 26/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20592   166]
+ [ 1635  1216]]
+accuracy = 0.9237155318260193
+precision class 0 = 0.9264408349990845
+precision class 1 = 0.8798842430114746
+recall class 0 = 0.9920030832290649
+recall class 1 = 0.4265170097351074
+AUC of ROC = 0.9256127695452825
+AUC of PRC = 0.7348679811244557
+min(+P, Se) = 0.6596565019277953
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2723   63]
+ [ 310  126]]
+accuracy = 0.8842334151268005
+precision class 0 = 0.8977909684181213
+precision class 1 = 0.6666666865348816
+recall class 0 = 0.9773869514465332
+recall class 1 = 0.2889908254146576
+AUC of ROC = 0.8506869208427459
+AUC of PRC = 0.5388621481430553
+min(+P, Se) = 0.518348623853211
+Epoch 00026: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch26.test0.2934336294434516.state
+ - 1001s - loss: 0.2308 - val_loss: 0.2934
+Epoch 27/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20525   233]
+ [ 1533  1318]]
+accuracy = 0.9251980185508728
+precision class 0 = 0.930501401424408
+precision class 1 = 0.8497743606567383
+recall class 0 = 0.9887754321098328
+recall class 1 = 0.46229392290115356
+AUC of ROC = 0.9236878377537624
+AUC of PRC = 0.7323522103289374
+min(+P, Se) = 0.6513504033672396
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2705   81]
+ [ 292  144]]
+accuracy = 0.8842334151268005
+precision class 0 = 0.9025692343711853
+precision class 1 = 0.6399999856948853
+recall class 0 = 0.97092604637146
+recall class 1 = 0.3302752375602722
+AUC of ROC = 0.8522708562471598
+AUC of PRC = 0.5385996615806795
+min(+P, Se) = 0.5066079295154186
+Epoch 00027: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch27.test0.3069392111242594.state
+ - 981s - loss: 0.2271 - val_loss: 0.3069
+Epoch 28/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20516   242]
+ [ 1488  1363]]
+accuracy = 0.9267228841781616
+precision class 0 = 0.9323759078979492
+precision class 1 = 0.8492211699485779
+recall class 0 = 0.9883418679237366
+recall class 1 = 0.47807785868644714
+AUC of ROC = 0.9250989733911144
+AUC of PRC = 0.7362248980132386
+min(+P, Se) = 0.6597685022799018
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2704   82]
+ [ 298  138]]
+accuracy = 0.8820608258247375
+precision class 0 = 0.9007328152656555
+precision class 1 = 0.6272727251052856
+recall class 0 = 0.9705671072006226
+recall class 1 = 0.3165137469768524
+AUC of ROC = 0.8507396089227264
+AUC of PRC = 0.5246145441494723
+min(+P, Se) = 0.5
+Epoch 00028: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch28.test0.2988581239603677.state
+ - 981s - loss: 0.2302 - val_loss: 0.2989
+Epoch 29/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20550   208]
+ [ 1524  1327]]
+accuracy = 0.926638126373291
+precision class 0 = 0.9309595227241516
+precision class 1 = 0.8644950985908508
+recall class 0 = 0.9899797439575195
+recall class 1 = 0.4654507339000702
+AUC of ROC = 0.925985599987077
+AUC of PRC = 0.7409361531845706
+min(+P, Se) = 0.6611715187653455
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2709   77]
+ [ 304  132]]
+accuracy = 0.8817504644393921
+precision class 0 = 0.8991038799285889
+precision class 1 = 0.6315789222717285
+recall class 0 = 0.9723618030548096
+recall class 1 = 0.302752286195755
+AUC of ROC = 0.8536839670172618
+AUC of PRC = 0.5293094598416993
+min(+P, Se) = 0.5045871559633027
+Epoch 00029: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch29.test0.2996076706896318.state
+ - 981s - loss: 0.2282 - val_loss: 0.2996
+Epoch 30/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20546   212]
+ [ 1483  1368]]
+accuracy = 0.9282053709030151
+precision class 0 = 0.9326796531677246
+precision class 1 = 0.8658227920532227
+recall class 0 = 0.9897870421409607
+recall class 1 = 0.47983163595199585
+AUC of ROC = 0.9273256317925238
+AUC of PRC = 0.7455411625804546
+min(+P, Se) = 0.6716941424061733
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2699   87]
+ [ 298  138]]
+accuracy = 0.8805090188980103
+precision class 0 = 0.9005672335624695
+precision class 1 = 0.6133333444595337
+recall class 0 = 0.9687724113464355
+recall class 1 = 0.3165137469768524
+AUC of ROC = 0.8522033496446847
+AUC of PRC = 0.5279620127432796
+min(+P, Se) = 0.5088888888888888
+Epoch 00030: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch30.test0.3066121147336204.state
+ - 977s - loss: 0.2260 - val_loss: 0.3066
+Epoch 31/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20583   175]
+ [ 1542  1309]]
+accuracy = 0.9272735118865967
+precision class 0 = 0.9303050637245178
+precision class 1 = 0.8820754885673523
+recall class 0 = 0.9915695190429688
+recall class 1 = 0.4591371417045593
+AUC of ROC = 0.9279175779520534
+AUC of PRC = 0.7458469314749588
+min(+P, Se) = 0.6622237811294283
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2709   77]
+ [ 311  125]]
+accuracy = 0.8795778751373291
+precision class 0 = 0.8970198631286621
+precision class 1 = 0.6188119053840637
+recall class 0 = 0.9723618030548096
+recall class 1 = 0.28669723868370056
+AUC of ROC = 0.8488580681915475
+AUC of PRC = 0.5330300592911472
+min(+P, Se) = 0.5137614678899083
+Epoch 00031: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch31.test0.2997868740451329.state
+ - 990s - loss: 0.2279 - val_loss: 0.2998
+Epoch 32/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20623   135]
+ [ 1626  1225]]
+accuracy = 0.9254097938537598
+precision class 0 = 0.926918089389801
+precision class 1 = 0.9007353186607361
+recall class 0 = 0.9934964776039124
+recall class 1 = 0.42967379093170166
+AUC of ROC = 0.9261491827334347
+AUC of PRC = 0.7409484157981239
+min(+P, Se) = 0.6608207646439845
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2727   59]
+ [ 318  118]]
+accuracy = 0.8829919099807739
+precision class 0 = 0.8955665230751038
+precision class 1 = 0.6666666865348816
+recall class 0 = 0.9788227081298828
+recall class 1 = 0.2706421911716461
+AUC of ROC = 0.8511117184875887
+AUC of PRC = 0.534743493194471
+min(+P, Se) = 0.49770642201834864
+Epoch 00032: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch32.test0.30701583986703024.state
+ - 971s - loss: 0.2289 - val_loss: 0.3070
+Epoch 33/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20502   256]
+ [ 1437  1414]]
+accuracy = 0.928290069103241
+precision class 0 = 0.9345002174377441
+precision class 1 = 0.8467065691947937
+recall class 0 = 0.9876673817634583
+recall class 1 = 0.4959663152694702
+AUC of ROC = 0.9279382517967151
+AUC of PRC = 0.7451766313245932
+min(+P, Se) = 0.6708727655099895
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2681  105]
+ [ 288  148]]
+accuracy = 0.8780260682106018
+precision class 0 = 0.902997612953186
+precision class 1 = 0.5849802494049072
+recall class 0 = 0.9623115658760071
+recall class 1 = 0.33944955468177795
+AUC of ROC = 0.8448105534224202
+AUC of PRC = 0.519490859604509
+min(+P, Se) = 0.49770642201834864
+Epoch 00033: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch33.test0.3151240531866185.state
+ - 980s - loss: 0.2257 - val_loss: 0.3151
+Epoch 34/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20510   248]
+ [ 1419  1432]]
+accuracy = 0.9293913245201111
+precision class 0 = 0.9352911710739136
+precision class 1 = 0.8523809313774109
+recall class 0 = 0.9880527853965759
+recall class 1 = 0.5022798776626587
+AUC of ROC = 0.9296754630510322
+AUC of PRC = 0.7470961237351683
+min(+P, Se) = 0.6590669940371799
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2692   94]
+ [ 296  140]]
+accuracy = 0.8789571523666382
+precision class 0 = 0.9009370803833008
+precision class 1 = 0.5982906222343445
+recall class 0 = 0.9662598967552185
+recall class 1 = 0.3211009204387665
+AUC of ROC = 0.8459260588657576
+AUC of PRC = 0.5201947310077996
+min(+P, Se) = 0.5022935779816514
+Epoch 00034: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch34.test0.3008790543750345.state
+ - 974s - loss: 0.2249 - val_loss: 0.3009
+Epoch 35/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20560   198]
+ [ 1463  1388]]
+accuracy = 0.9296454787254333
+precision class 0 = 0.9335694313049316
+precision class 1 = 0.8751576542854309
+recall class 0 = 0.990461528301239
+recall class 1 = 0.4868467152118683
+AUC of ROC = 0.9311958566202043
+AUC of PRC = 0.7530429634733982
+min(+P, Se) = 0.6699403717993686
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2705   81]
+ [ 297  139]]
+accuracy = 0.8826815485954285
+precision class 0 = 0.9010659456253052
+precision class 1 = 0.6318181753158569
+recall class 0 = 0.97092604637146
+recall class 1 = 0.31880733370780945
+AUC of ROC = 0.8489630327258836
+AUC of PRC = 0.5298319961595614
+min(+P, Se) = 0.5125858123569794
+Epoch 00035: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch35.test0.305310164340659.state
+ - 967s - loss: 0.2227 - val_loss: 0.3053
+Epoch 36/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20519   239]
+ [ 1422  1429]]
+accuracy = 0.9296454787254333
+precision class 0 = 0.9351898431777954
+precision class 1 = 0.8567146062850952
+recall class 0 = 0.9884863495826721
+recall class 1 = 0.501227617263794
+AUC of ROC = 0.9316665139714129
+AUC of PRC = 0.7576572742995584
+min(+P, Se) = 0.6777699859747546
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2693   93]
+ [ 288  148]]
+accuracy = 0.8817504644393921
+precision class 0 = 0.9033881425857544
+precision class 1 = 0.6141079068183899
+recall class 0 = 0.9666188359260559
+recall class 1 = 0.33944955468177795
+AUC of ROC = 0.8464718744443054
+AUC of PRC = 0.5370757265716785
+min(+P, Se) = 0.5068807339449541
+Epoch 00036: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch36.test0.301600637868241.state
+ - 984s - loss: 0.2245 - val_loss: 0.3016
+Epoch 37/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20625   133]
+ [ 1609  1242]]
+accuracy = 0.9262145757675171
+precision class 0 = 0.9276333451271057
+precision class 1 = 0.9032727479934692
+recall class 0 = 0.9935928583145142
+recall class 1 = 0.43563660979270935
+AUC of ROC = 0.9289366371246692
+AUC of PRC = 0.751802298880765
+min(+P, Se) = 0.6766047001052262
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2730   56]
+ [ 322  114]]
+accuracy = 0.8826815485954285
+precision class 0 = 0.89449542760849
+precision class 1 = 0.6705882549285889
+recall class 0 = 0.979899525642395
+recall class 1 = 0.26146790385246277
+AUC of ROC = 0.854875623201196
+AUC of PRC = 0.5321125118826834
+min(+P, Se) = 0.49770642201834864
+Epoch 00037: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch37.test0.30723177464499674.state
+ - 977s - loss: 0.2228 - val_loss: 0.3072
+Epoch 38/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20524   234]
+ [ 1397  1454]]
+accuracy = 0.9309161901473999
+precision class 0 = 0.9362711310386658
+precision class 1 = 0.8613743782043457
+recall class 0 = 0.9887272119522095
+recall class 1 = 0.5099964737892151
+AUC of ROC = 0.9309081632166832
+AUC of PRC = 0.7554849176034881
+min(+P, Se) = 0.6719242902208202
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2691   95]
+ [ 289  147]]
+accuracy = 0.8808193802833557
+precision class 0 = 0.9030201435089111
+precision class 1 = 0.6074380278587341
+recall class 0 = 0.9659009575843811
+recall class 1 = 0.3371559679508209
+AUC of ROC = 0.8503263367953793
+AUC of PRC = 0.5270087715086
+min(+P, Se) = 0.5022935779816514
+Epoch 00038: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch38.test0.3062553202200387.state
+ - 981s - loss: 0.2240 - val_loss: 0.3063
+Epoch 39/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20478   280]
+ [ 1348  1503]]
+accuracy = 0.931043267250061
+precision class 0 = 0.938238799571991
+precision class 1 = 0.842961311340332
+recall class 0 = 0.98651123046875
+recall class 1 = 0.527183473110199
+AUC of ROC = 0.9296258272368162
+AUC of PRC = 0.7587984660221176
+min(+P, Se) = 0.6791725105189341
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2689   97]
+ [ 286  150]]
+accuracy = 0.8811297416687012
+precision class 0 = 0.9038655757904053
+precision class 1 = 0.6072874665260315
+recall class 0 = 0.9651830792427063
+recall class 1 = 0.34403669834136963
+AUC of ROC = 0.8555391637084505
+AUC of PRC = 0.5396787338971643
+min(+P, Se) = 0.5034324942791762
+Epoch 00039: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch39.test0.30721771855122326.state
+ - 986s - loss: 0.2223 - val_loss: 0.3072
+Epoch 40/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20560   198]
+ [ 1455  1396]]
+accuracy = 0.9299843311309814
+precision class 0 = 0.9339087009429932
+precision class 1 = 0.8757842183113098
+recall class 0 = 0.990461528301239
+recall class 1 = 0.48965275287628174
+AUC of ROC = 0.9328089065254629
+AUC of PRC = 0.7612297250496589
+min(+P, Se) = 0.6850227990178884
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2709   77]
+ [ 307  129]]
+accuracy = 0.8808193802833557
+precision class 0 = 0.8982095718383789
+precision class 1 = 0.6262136101722717
+recall class 0 = 0.9723618030548096
+recall class 1 = 0.2958715558052063
+AUC of ROC = 0.8442935516376113
+AUC of PRC = 0.5106718982007159
+min(+P, Se) = 0.4909090909090909
+Epoch 00040: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch40.test0.3007531268655107.state
+ - 972s - loss: 0.2217 - val_loss: 0.3008
+Epoch 41/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20616   142]
+ [ 1553  1298]]
+accuracy = 0.9282053709030151
+precision class 0 = 0.9299471974372864
+precision class 1 = 0.9013888835906982
+recall class 0 = 0.9931592345237732
+recall class 1 = 0.45527884364128113
+AUC of ROC = 0.9296748209536909
+AUC of PRC = 0.7601791945188356
+min(+P, Se) = 0.6787092248333918
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2716   70]
+ [ 315  121]]
+accuracy = 0.8805090188980103
+precision class 0 = 0.8960738778114319
+precision class 1 = 0.6335078477859497
+recall class 0 = 0.9748743772506714
+recall class 1 = 0.2775229215621948
+AUC of ROC = 0.853859731159072
+AUC of PRC = 0.5330231496518479
+min(+P, Se) = 0.5137614678899083
+Epoch 00041: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch41.test0.3117761524749109.state
+ - 986s - loss: 0.2209 - val_loss: 0.3118
+Epoch 42/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20434   324]
+ [ 1276  1575]]
+accuracy = 0.932229220867157
+precision class 0 = 0.9412252306938171
+precision class 1 = 0.829383909702301
+recall class 0 = 0.9843915700912476
+recall class 1 = 0.5524377226829529
+AUC of ROC = 0.9322490821302993
+AUC of PRC = 0.7590300116101791
+min(+P, Se) = 0.6791725105189341
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2664  122]
+ [ 287  149]]
+accuracy = 0.8730602264404297
+precision class 0 = 0.9027448296546936
+precision class 1 = 0.5498154759407043
+recall class 0 = 0.9562095999717712
+recall class 1 = 0.3417431116104126
+AUC of ROC = 0.8532826320330354
+AUC of PRC = 0.5190744155898716
+min(+P, Se) = 0.49772727272727274
+Epoch 00042: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch42.test0.30430328981947413.state
+ - 966s - loss: 0.2220 - val_loss: 0.3043
+Epoch 43/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20566   192]
+ [ 1411  1440]]
+accuracy = 0.9321021437644958
+precision class 0 = 0.9357964992523193
+precision class 1 = 0.8823529481887817
+recall class 0 = 0.9907505512237549
+recall class 1 = 0.5050859451293945
+AUC of ROC = 0.9333079513380784
+AUC of PRC = 0.7631307286144955
+min(+P, Se) = 0.6818660119256401
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2706   80]
+ [ 300  136]]
+accuracy = 0.8820608258247375
+precision class 0 = 0.9001995921134949
+precision class 1 = 0.6296296119689941
+recall class 0 = 0.9712849855422974
+recall class 1 = 0.31192660331726074
+AUC of ROC = 0.8436563551703472
+AUC of PRC = 0.5178093199185925
+min(+P, Se) = 0.4954545454545455
+Epoch 00043: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch43.test0.3099589140786287.state
+ - 968s - loss: 0.2191 - val_loss: 0.3100
+Epoch 44/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20562   196]
+ [ 1461  1390]]
+accuracy = 0.929814875125885
+precision class 0 = 0.9336602687835693
+precision class 1 = 0.8764186501502991
+recall class 0 = 0.990557849407196
+recall class 1 = 0.48754823207855225
+AUC of ROC = 0.934469091444766
+AUC of PRC = 0.7654439435457383
+min(+P, Se) = 0.6918502973067506
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2703   83]
+ [ 304  132]]
+accuracy = 0.8798882961273193
+precision class 0 = 0.8989025354385376
+precision class 1 = 0.6139534711837769
+recall class 0 = 0.9702081680297852
+recall class 1 = 0.302752286195755
+AUC of ROC = 0.8474828269789314
+AUC of PRC = 0.5240485515060789
+min(+P, Se) = 0.49311926605504586
+Epoch 00044: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch44.test0.29756906905172775.state
+ - 982s - loss: 0.2194 - val_loss: 0.2976
+Epoch 45/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20608   150]
+ [ 1529  1322]]
+accuracy = 0.9288830757141113
+precision class 0 = 0.9309301376342773
+precision class 1 = 0.898097813129425
+recall class 0 = 0.9927738904953003
+recall class 1 = 0.4636969566345215
+AUC of ROC = 0.9333175827981988
+AUC of PRC = 0.7636553831438654
+min(+P, Se) = 0.6860750613819713
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2720   66]
+ [ 304  132]]
+accuracy = 0.8851644992828369
+precision class 0 = 0.8994709253311157
+precision class 1 = 0.6666666865348816
+recall class 0 = 0.976310133934021
+recall class 1 = 0.302752286195755
+AUC of ROC = 0.8505683726627896
+AUC of PRC = 0.5358263352057955
+min(+P, Se) = 0.49776785714285715
+Epoch 00045: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch45.test0.2992025727393426.state
+ - 962s - loss: 0.2210 - val_loss: 0.2992
+Epoch 46/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20534   224]
+ [ 1371  1480]]
+accuracy = 0.932440996170044
+precision class 0 = 0.9374115467071533
+precision class 1 = 0.8685445785522461
+recall class 0 = 0.989208996295929
+recall class 1 = 0.5191161036491394
+AUC of ROC = 0.9360422045851226
+AUC of PRC = 0.7734474869739316
+min(+P, Se) = 0.6930901438091898
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2693   93]
+ [ 296  140]]
+accuracy = 0.8792675137519836
+precision class 0 = 0.9009702205657959
+precision class 1 = 0.6008583903312683
+recall class 0 = 0.9666188359260559
+recall class 1 = 0.3211009204387665
+AUC of ROC = 0.8436143693566127
+AUC of PRC = 0.5236171627961541
+min(+P, Se) = 0.48623853211009177
+Epoch 00046: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch46.test0.29990234324496995.state
+ - 985s - loss: 0.2197 - val_loss: 0.2999
+Epoch 47/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20626   132]
+ [ 1552  1299]]
+accuracy = 0.9286712408065796
+precision class 0 = 0.9300207495689392
+precision class 1 = 0.9077568054199219
+recall class 0 = 0.9936410188674927
+recall class 1 = 0.4556296169757843
+AUC of ROC = 0.9364765834365449
+AUC of PRC = 0.7741231133948443
+min(+P, Se) = 0.6944541332403209
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2720   66]
+ [ 312  124]]
+accuracy = 0.8826815485954285
+precision class 0 = 0.897097647190094
+precision class 1 = 0.6526315808296204
+recall class 0 = 0.976310133934021
+recall class 1 = 0.2844036817550659
+AUC of ROC = 0.8525869847270429
+AUC of PRC = 0.5344772427697573
+min(+P, Se) = 0.4954128440366973
+Epoch 00047: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch47.test0.300844043414649.state
+ - 971s - loss: 0.2196 - val_loss: 0.3008
+Epoch 48/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20574   184]
+ [ 1421  1430]]
+accuracy = 0.93201744556427
+precision class 0 = 0.9353944063186646
+precision class 1 = 0.8859975337982178
+recall class 0 = 0.9911359548568726
+recall class 1 = 0.5015783905982971
+AUC of ROC = 0.936549241819908
+AUC of PRC = 0.7744690786678071
+min(+P, Se) = 0.6951347567378369
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2697   89]
+ [ 297  139]]
+accuracy = 0.8801986575126648
+precision class 0 = 0.9008015990257263
+precision class 1 = 0.609649121761322
+recall class 0 = 0.9680545330047607
+recall class 1 = 0.31880733370780945
+AUC of ROC = 0.848875768093416
+AUC of PRC = 0.5224677677001026
+min(+P, Se) = 0.49770642201834864
+Epoch 00048: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch48.test0.30684317905550634.state
+ - 963s - loss: 0.2210 - val_loss: 0.3068
+Epoch 49/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20549   209]
+ [ 1355  1496]]
+accuracy = 0.9337540864944458
+precision class 0 = 0.9381391406059265
+precision class 1 = 0.8774193525314331
+recall class 0 = 0.989931583404541
+recall class 1 = 0.5247281789779663
+AUC of ROC = 0.9348031594839011
+AUC of PRC = 0.7722549655201324
+min(+P, Se) = 0.6923886355664679
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2700   86]
+ [ 285  151]]
+accuracy = 0.8848541378974915
+precision class 0 = 0.9045225977897644
+precision class 1 = 0.6371307969093323
+recall class 0 = 0.969131350517273
+recall class 1 = 0.34633028507232666
+AUC of ROC = 0.8481850602949216
+AUC of PRC = 0.5195016952633726
+min(+P, Se) = 0.48623853211009177
+Epoch 00049: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch49.test0.3191351856594682.state
+ - 989s - loss: 0.2161 - val_loss: 0.3191
+Epoch 50/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20536   222]
+ [ 1341  1510]]
+accuracy = 0.9337964057922363
+precision class 0 = 0.9387027621269226
+precision class 1 = 0.8718245029449463
+recall class 0 = 0.989305317401886
+recall class 1 = 0.5296387076377869
+AUC of ROC = 0.9363022033164734
+AUC of PRC = 0.7761174776655366
+min(+P, Se) = 0.6976499473868818
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2693   93]
+ [ 298  138]]
+accuracy = 0.8786467909812927
+precision class 0 = 0.900367796421051
+precision class 1 = 0.5974025726318359
+recall class 0 = 0.9666188359260559
+recall class 1 = 0.3165137469768524
+AUC of ROC = 0.8516295435236471
+AUC of PRC = 0.5226187453218634
+min(+P, Se) = 0.5011389521640092
+Epoch 00050: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch50.test0.298104649903351.state
+ - 967s - loss: 0.2181 - val_loss: 0.2981
+Epoch 51/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20578   180]
+ [ 1382  1469]]
+accuracy = 0.9338387846946716
+precision class 0 = 0.9370673894882202
+precision class 1 = 0.8908429145812988
+recall class 0 = 0.9913286566734314
+recall class 1 = 0.5152577757835388
+AUC of ROC = 0.9355867885971216
+AUC of PRC = 0.7762287931249715
+min(+P, Se) = 0.6984572230014026
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2701   85]
+ [ 302  134]]
+accuracy = 0.8798882961273193
+precision class 0 = 0.8994339108467102
+precision class 1 = 0.611872136592865
+recall class 0 = 0.9694902896881104
+recall class 1 = 0.30733945965766907
+AUC of ROC = 0.8513216475562609
+AUC of PRC = 0.5282692401300564
+min(+P, Se) = 0.5045871559633027
+Epoch 00051: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch51.test0.3069762570828588.state
+ - 982s - loss: 0.2191 - val_loss: 0.3070
+Epoch 52/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20577   181]
+ [ 1405  1446]]
+accuracy = 0.9328222274780273
+precision class 0 = 0.9360840916633606
+precision class 1 = 0.888752281665802
+recall class 0 = 0.9912804961204529
+recall class 1 = 0.507190465927124
+AUC of ROC = 0.936572188351212
+AUC of PRC = 0.7805783282983622
+min(+P, Se) = 0.7004559803577692
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2707   79]
+ [ 301  135]]
+accuracy = 0.8820608258247375
+precision class 0 = 0.8999335169792175
+precision class 1 = 0.6308411359786987
+recall class 0 = 0.9716439247131348
+recall class 1 = 0.3096330165863037
+AUC of ROC = 0.8528166718257079
+AUC of PRC = 0.5311616119614705
+min(+P, Se) = 0.5045871559633027
+Epoch 00052: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch52.test0.30726908871812675.state
+ - 973s - loss: 0.2189 - val_loss: 0.3073
+Epoch 53/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20524   234]
+ [ 1393  1458]]
+accuracy = 0.9310855865478516
+precision class 0 = 0.9364420175552368
+precision class 1 = 0.8617021441459656
+recall class 0 = 0.9887272119522095
+recall class 1 = 0.511399507522583
+AUC of ROC = 0.9351550795188555
+AUC of PRC = 0.7727330057052999
+min(+P, Se) = 0.6992665036674817
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2695   91]
+ [ 284  152]]
+accuracy = 0.8836126923561096
+precision class 0 = 0.904666006565094
+precision class 1 = 0.6255143880844116
+recall class 0 = 0.9673366546630859
+recall class 1 = 0.3486238420009613
+AUC of ROC = 0.8490387718408557
+AUC of PRC = 0.5238155715186605
+min(+P, Se) = 0.5045871559633027
+Epoch 00053: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch53.test0.30922554956643866.state
+ - 972s - loss: 0.2158 - val_loss: 0.3092
+Epoch 54/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20605   153]
+ [ 1446  1405]]
+accuracy = 0.9322715997695923
+precision class 0 = 0.9344247579574585
+precision class 1 = 0.9017971754074097
+recall class 0 = 0.99262934923172
+recall class 1 = 0.492809534072876
+AUC of ROC = 0.9362431219124201
+AUC of PRC = 0.7791998442307835
+min(+P, Se) = 0.7011574886004911
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2713   73]
+ [ 306  130]]
+accuracy = 0.882371187210083
+precision class 0 = 0.8986419439315796
+precision class 1 = 0.6403940916061401
+recall class 0 = 0.9737975597381592
+recall class 1 = 0.29816514253616333
+AUC of ROC = 0.8465459670567779
+AUC of PRC = 0.5203688639727273
+min(+P, Se) = 0.5022935779816514
+Epoch 00054: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch54.test0.30416755269331863.state
+ - 975s - loss: 0.2175 - val_loss: 0.3042
+Epoch 55/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20556   202]
+ [ 1365  1486]]
+accuracy = 0.9336270093917847
+precision class 0 = 0.9377309679985046
+precision class 1 = 0.8803317546844482
+recall class 0 = 0.9902688264846802
+recall class 1 = 0.5212206244468689
+AUC of ROC = 0.9360118147938484
+AUC of PRC = 0.7770928470852487
+min(+P, Se) = 0.6969484391441599
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2700   86]
+ [ 290  146]]
+accuracy = 0.8833022713661194
+precision class 0 = 0.9030100107192993
+precision class 1 = 0.6293103694915771
+recall class 0 = 0.969131350517273
+recall class 1 = 0.3348623812198639
+AUC of ROC = 0.8524816085670818
+AUC of PRC = 0.534486070228454
+min(+P, Se) = 0.5137614678899083
+Epoch 00055: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch55.test0.30106409474245366.state
+ - 972s - loss: 0.2166 - val_loss: 0.3011
+Epoch 56/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20659    99]
+ [ 1584  1267]]
+accuracy = 0.9287136197090149
+precision class 0 = 0.92878657579422
+precision class 1 = 0.9275256395339966
+recall class 0 = 0.9952307343482971
+recall class 1 = 0.4444054663181305
+AUC of ROC = 0.9382122232421057
+AUC of PRC = 0.7825368176122752
+min(+P, Se) = 0.706418800420905
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2732   54]
+ [ 317  119]]
+accuracy = 0.8848541378974915
+precision class 0 = 0.8960314989089966
+precision class 1 = 0.6878612637519836
+recall class 0 = 0.980617344379425
+recall class 1 = 0.27293577790260315
+AUC of ROC = 0.8493186772657522
+AUC of PRC = 0.5338336619186481
+min(+P, Se) = 0.5137614678899083
+Epoch 00056: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch56.test0.3155775712855035.state
+ - 985s - loss: 0.2139 - val_loss: 0.3156
+Epoch 57/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20551   207]
+ [ 1327  1524]]
+accuracy = 0.9350247979164124
+precision class 0 = 0.9393454790115356
+precision class 1 = 0.8804159164428711
+recall class 0 = 0.9900279641151428
+recall class 1 = 0.5345492959022522
+AUC of ROC = 0.9383106838002119
+AUC of PRC = 0.7834291586656931
+min(+P, Se) = 0.7030154277699859
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2692   94]
+ [ 289  147]]
+accuracy = 0.8811297416687012
+precision class 0 = 0.9030526876449585
+precision class 1 = 0.6099585294723511
+recall class 0 = 0.9662598967552185
+recall class 1 = 0.3371559679508209
+AUC of ROC = 0.8529475687744094
+AUC of PRC = 0.528924341058561
+min(+P, Se) = 0.5022935779816514
+Epoch 00057: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch57.test0.2975458001901762.state
+ - 978s - loss: 0.2167 - val_loss: 0.2975
+Epoch 58/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20594   164]
+ [ 1390  1461]]
+accuracy = 0.9341776371002197
+precision class 0 = 0.9367722272872925
+precision class 1 = 0.8990769386291504
+recall class 0 = 0.992099404335022
+recall class 1 = 0.5124517679214478
+AUC of ROC = 0.9388391299121418
+AUC of PRC = 0.7858159916639922
+min(+P, Se) = 0.7012622720897616
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2709   77]
+ [ 295  141]]
+accuracy = 0.884543776512146
+precision class 0 = 0.9017975926399231
+precision class 1 = 0.646789014339447
+recall class 0 = 0.9723618030548096
+recall class 1 = 0.3233945071697235
+AUC of ROC = 0.8472934791915014
+AUC of PRC = 0.5284172114473978
+min(+P, Se) = 0.4908256880733945
+Epoch 00058: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch58.test0.30034451423447595.state
+ - 975s - loss: 0.2181 - val_loss: 0.3003
+Epoch 59/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20523   235]
+ [ 1303  1548]]
+accuracy = 0.9348553419113159
+precision class 0 = 0.9403005838394165
+precision class 1 = 0.8681996464729309
+recall class 0 = 0.988679051399231
+recall class 1 = 0.5429673790931702
+AUC of ROC = 0.9376696171940692
+AUC of PRC = 0.7818668343561193
+min(+P, Se) = 0.6992639327024185
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2694   92]
+ [ 285  151]]
+accuracy = 0.8829919099807739
+precision class 0 = 0.904330313205719
+precision class 1 = 0.6213991641998291
+recall class 0 = 0.9669777750968933
+recall class 1 = 0.34633028507232666
+AUC of ROC = 0.8508128782839492
+AUC of PRC = 0.537633276079688
+min(+P, Se) = 0.5068807339449541
+Epoch 00059: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch59.test0.3005331530288315.state
+ - 985s - loss: 0.2164 - val_loss: 0.3005
+Epoch 60/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20546   212]
+ [ 1333  1518]]
+accuracy = 0.9345588684082031
+precision class 0 = 0.9390739798545837
+precision class 1 = 0.8774566650390625
+recall class 0 = 0.9897870421409607
+recall class 1 = 0.5324447751045227
+AUC of ROC = 0.938700563616149
+AUC of PRC = 0.786658997110807
+min(+P, Se) = 0.7083771468629513
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2701   85]
+ [ 286  150]]
+accuracy = 0.8848541378974915
+precision class 0 = 0.904251754283905
+precision class 1 = 0.6382978558540344
+recall class 0 = 0.9694902896881104
+recall class 1 = 0.34403669834136963
+AUC of ROC = 0.8540910647602364
+AUC of PRC = 0.5376419440837685
+min(+P, Se) = 0.5125858123569794
+Epoch 00060: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch60.test0.30406146131636264.state
+ - 973s - loss: 0.2169 - val_loss: 0.3041
+Epoch 61/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20575   183]
+ [ 1353  1498]]
+accuracy = 0.9349400401115417
+precision class 0 = 0.9382980465888977
+precision class 1 = 0.8911362290382385
+recall class 0 = 0.9911841154098511
+recall class 1 = 0.5254296660423279
+AUC of ROC = 0.9388330384360483
+AUC of PRC = 0.7885964926278073
+min(+P, Se) = 0.7074710627849877
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2703   83]
+ [ 296  140]]
+accuracy = 0.882371187210083
+precision class 0 = 0.9013004302978516
+precision class 1 = 0.6278026700019836
+recall class 0 = 0.9702081680297852
+recall class 1 = 0.3211009204387665
+AUC of ROC = 0.8477215698413431
+AUC of PRC = 0.5237704345950889
+min(+P, Se) = 0.5045871559633027
+Epoch 00061: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch61.test0.3061671275217699.state
+ - 986s - loss: 0.2130 - val_loss: 0.3062
+Epoch 62/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20524   234]
+ [ 1272  1579]]
+accuracy = 0.9362107515335083
+precision class 0 = 0.9416406750679016
+precision class 1 = 0.8709321618080139
+recall class 0 = 0.9887272119522095
+recall class 1 = 0.5538407564163208
+AUC of ROC = 0.9391375699974813
+AUC of PRC = 0.7905631430745218
+min(+P, Se) = 0.7116801122413189
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2683  103]
+ [ 279  157]]
+accuracy = 0.8814401030540466
+precision class 0 = 0.9058068990707397
+precision class 1 = 0.6038461327552795
+recall class 0 = 0.9630294442176819
+recall class 1 = 0.3600917458534241
+AUC of ROC = 0.8500497243754815
+AUC of PRC = 0.5271511522049981
+min(+P, Se) = 0.4977168949771689
+Epoch 00062: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch62.test0.31311725310791655.state
+ - 981s - loss: 0.2134 - val_loss: 0.3131
+Epoch 63/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20586   172]
+ [ 1386  1465]]
+accuracy = 0.9340082406997681
+precision class 0 = 0.9369196891784668
+precision class 1 = 0.8949297666549683
+recall class 0 = 0.9917140603065491
+recall class 1 = 0.5138548016548157
+AUC of ROC = 0.9381802873480227
+AUC of PRC = 0.7859393702977114
+min(+P, Se) = 0.703677758318739
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2706   80]
+ [ 296  140]]
+accuracy = 0.8833022713661194
+precision class 0 = 0.9013990759849548
+precision class 1 = 0.6363636255264282
+recall class 0 = 0.9712849855422974
+recall class 1 = 0.3211009204387665
+AUC of ROC = 0.8479792474824976
+AUC of PRC = 0.5264415263291135
+min(+P, Se) = 0.48623853211009177
+Epoch 00063: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch63.test0.30956153443267004.state
+ - 970s - loss: 0.2124 - val_loss: 0.3096
+Epoch 64/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20588   170]
+ [ 1412  1439]]
+accuracy = 0.9329916834831238
+precision class 0 = 0.9358181953430176
+precision class 1 = 0.8943443298339844
+recall class 0 = 0.9918103814125061
+recall class 1 = 0.5047351717948914
+AUC of ROC = 0.9396101367434155
+AUC of PRC = 0.7882522212522
+min(+P, Se) = 0.7110799438990182
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2712   74]
+ [ 300  136]]
+accuracy = 0.8839230537414551
+precision class 0 = 0.9003984332084656
+precision class 1 = 0.6476190686225891
+recall class 0 = 0.9734386205673218
+recall class 1 = 0.31192660331726074
+AUC of ROC = 0.8505255635978054
+AUC of PRC = 0.5331062986776756
+min(+P, Se) = 0.5045871559633027
+Epoch 00064: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch64.test0.3096508305082774.state
+ - 981s - loss: 0.2151 - val_loss: 0.3097
+Epoch 65/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20440   318]
+ [ 1153  1698]]
+accuracy = 0.9376932382583618
+precision class 0 = 0.9466030597686768
+precision class 1 = 0.8422619104385376
+recall class 0 = 0.9846805930137634
+recall class 1 = 0.595580518245697
+AUC of ROC = 0.9395521283178141
+AUC of PRC = 0.7839197704725654
+min(+P, Se) = 0.7088740792704314
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2659  127]
+ [ 266  170]]
+accuracy = 0.8780260682106018
+precision class 0 = 0.9090598225593567
+precision class 1 = 0.5723905563354492
+recall class 0 = 0.9544149041175842
+recall class 1 = 0.3899082541465759
+AUC of ROC = 0.8429640008693533
+AUC of PRC = 0.516413347450575
+min(+P, Se) = 0.4874141876430206
+Epoch 00065: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch65.test0.31408092287073663.state
+ - 973s - loss: 0.2120 - val_loss: 0.3141
+Epoch 66/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20580   178]
+ [ 1341  1510]]
+accuracy = 0.9356601238250732
+precision class 0 = 0.938825786113739
+precision class 1 = 0.8945497870445251
+recall class 0 = 0.9914249777793884
+recall class 1 = 0.5296387076377869
+AUC of ROC = 0.9402362745863719
+AUC of PRC = 0.7917126293873756
+min(+P, Se) = 0.7123335669236159
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2705   81]
+ [ 288  148]]
+accuracy = 0.8854748606681824
+precision class 0 = 0.9037754535675049
+precision class 1 = 0.6462882161140442
+recall class 0 = 0.97092604637146
+recall class 1 = 0.33944955468177795
+AUC of ROC = 0.8514245539624729
+AUC of PRC = 0.5278105245336736
+min(+P, Se) = 0.49547511312217196
+Epoch 00066: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch66.test0.3066351409865084.state
+ - 983s - loss: 0.2139 - val_loss: 0.3066
+Epoch 67/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20571   187]
+ [ 1324  1527]]
+accuracy = 0.9359989762306213
+precision class 0 = 0.9395295977592468
+precision class 1 = 0.8908984661102295
+recall class 0 = 0.9909914135932922
+recall class 1 = 0.5356015563011169
+AUC of ROC = 0.9411506972382954
+AUC of PRC = 0.7922008297698732
+min(+P, Se) = 0.7137846369694844
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2697   89]
+ [ 295  141]]
+accuracy = 0.8808193802833557
+precision class 0 = 0.9014037251472473
+precision class 1 = 0.613043487071991
+recall class 0 = 0.9680545330047607
+recall class 1 = 0.3233945071697235
+AUC of ROC = 0.8449002878086369
+AUC of PRC = 0.5265170748123843
+min(+P, Se) = 0.49770642201834864
+Epoch 00067: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch67.test0.30363967536511.state
+ - 983s - loss: 0.2136 - val_loss: 0.3036
+Epoch 68/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20557   201]
+ [ 1316  1535]]
+accuracy = 0.9357448220252991
+precision class 0 = 0.939834475517273
+precision class 1 = 0.8842166066169739
+recall class 0 = 0.9903169870376587
+recall class 1 = 0.538407564163208
+AUC of ROC = 0.9397839845985856
+AUC of PRC = 0.7908616800117084
+min(+P, Se) = 0.7148368993335672
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2695   91]
+ [ 284  152]]
+accuracy = 0.8836126923561096
+precision class 0 = 0.904666006565094
+precision class 1 = 0.6255143880844116
+recall class 0 = 0.9673366546630859
+recall class 1 = 0.3486238420009613
+AUC of ROC = 0.8537955175615958
+AUC of PRC = 0.5341438134897364
+min(+P, Se) = 0.5080091533180778
+Epoch 00068: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch68.test0.3192546575415179.state
+ - 969s - loss: 0.2136 - val_loss: 0.3193
+Epoch 69/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20458   300]
+ [ 1200  1651]]
+accuracy = 0.9364649057388306
+precision class 0 = 0.9445932507514954
+precision class 1 = 0.8462327122688293
+recall class 0 = 0.9855477213859558
+recall class 1 = 0.5790950655937195
+AUC of ROC = 0.9390212996868018
+AUC of PRC = 0.7899916852709387
+min(+P, Se) = 0.7102770957558752
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2674  112]
+ [ 268  168]]
+accuracy = 0.8820608258247375
+precision class 0 = 0.9089055061340332
+precision class 1 = 0.6000000238418579
+recall class 0 = 0.9597989916801453
+recall class 1 = 0.38532111048698425
+AUC of ROC = 0.8535139656341998
+AUC of PRC = 0.5323418188404725
+min(+P, Se) = 0.5
+Epoch 00069: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch69.test0.30951135860401086.state
+ - 988s - loss: 0.2164 - val_loss: 0.3095
+Epoch 70/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20584   174]
+ [ 1359  1492]]
+accuracy = 0.9350671172142029
+precision class 0 = 0.9380667805671692
+precision class 1 = 0.89555823802948
+recall class 0 = 0.9916176795959473
+recall class 1 = 0.5233251452445984
+AUC of ROC = 0.9384308742841333
+AUC of PRC = 0.7877405309563222
+min(+P, Se) = 0.7099263416345142
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2703   83]
+ [ 306  130]]
+accuracy = 0.8792675137519836
+precision class 0 = 0.8983050584793091
+precision class 1 = 0.6103286147117615
+recall class 0 = 0.9702081680297852
+recall class 1 = 0.29816514253616333
+AUC of ROC = 0.843902507294006
+AUC of PRC = 0.5170625429455944
+min(+P, Se) = 0.48306997742663654
+Epoch 00070: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch70.test0.3077559106070421.state
+ - 967s - loss: 0.2175 - val_loss: 0.3078
+Epoch 71/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20555   203]
+ [ 1332  1519]]
+accuracy = 0.934982419013977
+precision class 0 = 0.9391419291496277
+precision class 1 = 0.8821138143539429
+recall class 0 = 0.9902206659317017
+recall class 1 = 0.5327954888343811
+AUC of ROC = 0.9401500899155942
+AUC of PRC = 0.794105315231933
+min(+P, Se) = 0.7210599721059973
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2701   85]
+ [ 290  146]]
+accuracy = 0.8836126923561096
+precision class 0 = 0.9030424356460571
+precision class 1 = 0.6320346593856812
+recall class 0 = 0.9694902896881104
+recall class 1 = 0.3348623812198639
+AUC of ROC = 0.8505066288190626
+AUC of PRC = 0.524960432725795
+min(+P, Se) = 0.4909090909090909
+Epoch 00071: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch71.test0.3150262785260349.state
+ - 981s - loss: 0.2124 - val_loss: 0.3150
+Epoch 72/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20572   186]
+ [ 1336  1515]]
+accuracy = 0.9355330467224121
+precision class 0 = 0.9390177130699158
+precision class 1 = 0.8906525373458862
+recall class 0 = 0.9910395741462708
+recall class 1 = 0.531392514705658
+AUC of ROC = 0.9405140408270498
+AUC of PRC = 0.7944573637793665
+min(+P, Se) = 0.7190459487898982
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2702   84]
+ [ 294  142]]
+accuracy = 0.8826815485954285
+precision class 0 = 0.9018691778182983
+precision class 1 = 0.6283186078071594
+recall class 0 = 0.9698492288589478
+recall class 1 = 0.32568806409835815
+AUC of ROC = 0.8542112594426918
+AUC of PRC = 0.5273480280488222
+min(+P, Se) = 0.5011441647597255
+Epoch 00072: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch72.test0.3057741443219021.state
+ - 976s - loss: 0.2139 - val_loss: 0.3058
+Epoch 73/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20615   143]
+ [ 1385  1466]]
+accuracy = 0.9352788925170898
+precision class 0 = 0.9370454549789429
+precision class 1 = 0.9111249446868896
+recall class 0 = 0.9931110739707947
+recall class 1 = 0.5142055153846741
+AUC of ROC = 0.9412310016492103
+AUC of PRC = 0.7954395943269467
+min(+P, Se) = 0.7178408692604277
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2701   85]
+ [ 291  145]]
+accuracy = 0.8833022713661194
+precision class 0 = 0.9027406573295593
+precision class 1 = 0.6304348111152649
+recall class 0 = 0.9694902896881104
+recall class 1 = 0.33256879448890686
+AUC of ROC = 0.8490428880971043
+AUC of PRC = 0.5260924996719839
+min(+P, Se) = 0.4908256880733945
+Epoch 00073: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch73.test0.30172142934246066.state
+ - 962s - loss: 0.2159 - val_loss: 0.3017
+Epoch 74/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20554   204]
+ [ 1265  1586]]
+accuracy = 0.9377779364585876
+precision class 0 = 0.942022979259491
+precision class 1 = 0.8860335350036621
+recall class 0 = 0.9901724457740784
+recall class 1 = 0.5562960505485535
+AUC of ROC = 0.9423875963826128
+AUC of PRC = 0.7977291594427421
+min(+P, Se) = 0.7194950911640954
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2694   92]
+ [ 283  153]]
+accuracy = 0.8836126923561096
+precision class 0 = 0.9049378633499146
+precision class 1 = 0.6244897842407227
+recall class 0 = 0.9669777750968933
+recall class 1 = 0.35091742873191833
+AUC of ROC = 0.8506935068527434
+AUC of PRC = 0.526839857907595
+min(+P, Se) = 0.4965675057208238
+Epoch 00074: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch74.test0.30629131520047903.state
+ - 988s - loss: 0.2131 - val_loss: 0.3063
+Epoch 75/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20592   166]
+ [ 1353  1498]]
+accuracy = 0.9356601238250732
+precision class 0 = 0.9383458495140076
+precision class 1 = 0.9002403616905212
+recall class 0 = 0.9920030832290649
+recall class 1 = 0.5254296660423279
+AUC of ROC = 0.9425010955363454
+AUC of PRC = 0.7985965989114736
+min(+P, Se) = 0.7151876534549281
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2712   74]
+ [ 301  135]]
+accuracy = 0.8836126923561096
+precision class 0 = 0.9000995755195618
+precision class 1 = 0.6459330320358276
+recall class 0 = 0.9734386205673218
+recall class 1 = 0.3096330165863037
+AUC of ROC = 0.850588953944032
+AUC of PRC = 0.5263995251387938
+min(+P, Se) = 0.5034168564920274
+Epoch 00075: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch75.test0.30584848420561506.state
+ - 976s - loss: 0.2125 - val_loss: 0.3058
+Epoch 76/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20559   199]
+ [ 1261  1590]]
+accuracy = 0.938159167766571
+precision class 0 = 0.942209005355835
+precision class 1 = 0.8887646794319153
+recall class 0 = 0.9904133081436157
+recall class 1 = 0.5576990246772766
+AUC of ROC = 0.9422513365678592
+AUC of PRC = 0.7993395711830446
+min(+P, Se) = 0.7184431977559608
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2680  106]
+ [ 286  150]]
+accuracy = 0.8783364295959473
+precision class 0 = 0.9035738110542297
+precision class 1 = 0.5859375
+recall class 0 = 0.9619526267051697
+recall class 1 = 0.34403669834136963
+AUC of ROC = 0.8507733622239639
+AUC of PRC = 0.5186964556547476
+min(+P, Se) = 0.482837528604119
+Epoch 00076: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch76.test0.3084163356741195.state
+ - 978s - loss: 0.2126 - val_loss: 0.3084
+Epoch 77/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20612   146]
+ [ 1397  1454]]
+accuracy = 0.934643566608429
+precision class 0 = 0.9365259408950806
+precision class 1 = 0.9087499976158142
+recall class 0 = 0.9929665923118591
+recall class 1 = 0.5099964737892151
+AUC of ROC = 0.9432850963901321
+AUC of PRC = 0.8025845924732912
+min(+P, Se) = 0.7302700806734479
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2717   69]
+ [ 301  135]]
+accuracy = 0.8851644992828369
+precision class 0 = 0.900265097618103
+precision class 1 = 0.6617646813392639
+recall class 0 = 0.9752333164215088
+recall class 1 = 0.3096330165863037
+AUC of ROC = 0.8506210607427703
+AUC of PRC = 0.532732084199683
+min(+P, Se) = 0.4954128440366973
+Epoch 00077: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch77.test0.3095924172441757.state
+ - 986s - loss: 0.2104 - val_loss: 0.3096
+Epoch 78/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20414   344]
+ [ 1076  1775]]
+accuracy = 0.9398534297943115
+precision class 0 = 0.9499301910400391
+precision class 1 = 0.8376592993736267
+recall class 0 = 0.9834280610084534
+recall class 1 = 0.622588574886322
+AUC of ROC = 0.9422207693549515
+AUC of PRC = 0.7998517116233848
+min(+P, Se) = 0.7218519817607857
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2649  137]
+ [ 253  183]]
+accuracy = 0.8789571523666382
+precision class 0 = 0.9128187298774719
+precision class 1 = 0.5718749761581421
+recall class 0 = 0.950825572013855
+recall class 1 = 0.4197247624397278
+AUC of ROC = 0.8531854883855714
+AUC of PRC = 0.5361400132341158
+min(+P, Se) = 0.5045871559633027
+Epoch 00078: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch78.test0.32066701360689714.state
+ - 974s - loss: 0.2115 - val_loss: 0.3207
+Epoch 79/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20544   214]
+ [ 1249  1602]]
+accuracy = 0.9380320906639099
+precision class 0 = 0.9426880478858948
+precision class 1 = 0.8821585774421692
+recall class 0 = 0.9896907210350037
+recall class 1 = 0.5619081258773804
+AUC of ROC = 0.9421588238588097
+AUC of PRC = 0.8015573977715014
+min(+P, Se) = 0.7260610312171168
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2691   95]
+ [ 280  156]]
+accuracy = 0.8836126923561096
+precision class 0 = 0.9057556390762329
+precision class 1 = 0.6215139627456665
+recall class 0 = 0.9659009575843811
+recall class 1 = 0.35779815912246704
+AUC of ROC = 0.8490791111520908
+AUC of PRC = 0.5275275881126421
+min(+P, Se) = 0.5011441647597255
+Epoch 00079: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch79.test0.30866051487009544.state
+ - 991s - loss: 0.2129 - val_loss: 0.3087
+Epoch 80/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20494   264]
+ [ 1196  1655]]
+accuracy = 0.938159167766571
+precision class 0 = 0.9448593854904175
+precision class 1 = 0.8624283671379089
+recall class 0 = 0.9872820377349854
+recall class 1 = 0.5804980993270874
+AUC of ROC = 0.9425124843155052
+AUC of PRC = 0.7981123526952223
+min(+P, Se) = 0.7127323746054016
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2669  117]
+ [ 275  161]]
+accuracy = 0.8783364295959473
+precision class 0 = 0.906589686870575
+precision class 1 = 0.5791366696357727
+recall class 0 = 0.9580042958259583
+recall class 1 = 0.3692660629749298
+AUC of ROC = 0.8459342913782544
+AUC of PRC = 0.5216090357369288
+min(+P, Se) = 0.4954128440366973
+Epoch 00080: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch80.test0.3148711106302315.state
+ - 971s - loss: 0.2125 - val_loss: 0.3149
+Epoch 81/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20521   237]
+ [ 1221  1630]]
+accuracy = 0.9382438659667969
+precision class 0 = 0.9438413977622986
+precision class 1 = 0.8730583786964417
+recall class 0 = 0.9885827302932739
+recall class 1 = 0.5717292428016663
+AUC of ROC = 0.9420661421767756
+AUC of PRC = 0.7994790454850326
+min(+P, Se) = 0.7185418857343148
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2679  107]
+ [ 275  161]]
+accuracy = 0.8814401030540466
+precision class 0 = 0.9069058895111084
+precision class 1 = 0.6007462739944458
+recall class 0 = 0.9615936875343323
+recall class 1 = 0.3692660629749298
+AUC of ROC = 0.8480961491599545
+AUC of PRC = 0.5297507551263367
+min(+P, Se) = 0.5011441647597255
+Epoch 00081: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch81.test0.3113386872057438.state
+ - 978s - loss: 0.2126 - val_loss: 0.3113
+Epoch 82/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20594   164]
+ [ 1318  1533]]
+accuracy = 0.9372273087501526
+precision class 0 = 0.9398503303527832
+precision class 1 = 0.9033588767051697
+recall class 0 = 0.992099404335022
+recall class 1 = 0.5377060770988464
+AUC of ROC = 0.942395521215589
+AUC of PRC = 0.80182837765662
+min(+P, Se) = 0.7225534900035075
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2697   89]
+ [ 285  151]]
+accuracy = 0.8839230537414551
+precision class 0 = 0.9044265747070312
+precision class 1 = 0.6291666626930237
+recall class 0 = 0.9680545330047607
+recall class 1 = 0.34633028507232666
+AUC of ROC = 0.8520889177209772
+AUC of PRC = 0.5373418061855886
+min(+P, Se) = 0.49673202614379086
+Epoch 00082: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch82.test0.30707204140246397.state
+ - 978s - loss: 0.2103 - val_loss: 0.3071
+Epoch 83/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20593   165]
+ [ 1304  1547]]
+accuracy = 0.9377779364585876
+precision class 0 = 0.9404484629631042
+precision class 1 = 0.90362149477005
+recall class 0 = 0.9920512437820435
+recall class 1 = 0.542616605758667
+AUC of ROC = 0.9435517104138287
+AUC of PRC = 0.8034714411423801
+min(+P, Se) = 0.7236057523675903
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2699   87]
+ [ 292  144]]
+accuracy = 0.882371187210083
+precision class 0 = 0.9023737907409668
+precision class 1 = 0.6233766078948975
+recall class 0 = 0.9687724113464355
+recall class 1 = 0.3302752375602722
+AUC of ROC = 0.8422601210508637
+AUC of PRC = 0.5211218168933298
+min(+P, Se) = 0.4931506849315068
+Epoch 00083: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch83.test0.3017545575813652.state
+ - 973s - loss: 0.2109 - val_loss: 0.3018
+Epoch 84/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20612   146]
+ [ 1333  1518]]
+accuracy = 0.9373543858528137
+precision class 0 = 0.9392572045326233
+precision class 1 = 0.9122596383094788
+recall class 0 = 0.9929665923118591
+recall class 1 = 0.5324447751045227
+AUC of ROC = 0.943852440083109
+AUC of PRC = 0.8028516349313854
+min(+P, Se) = 0.7208976157082749
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2710   76]
+ [ 296  140]]
+accuracy = 0.884543776512146
+precision class 0 = 0.9015302658081055
+precision class 1 = 0.6481481194496155
+recall class 0 = 0.972720742225647
+recall class 1 = 0.3211009204387665
+AUC of ROC = 0.8486954760697327
+AUC of PRC = 0.5307791835119954
+min(+P, Se) = 0.5068807339449541
+Epoch 00084: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch84.test0.3019232676219378.state
+ - 995s - loss: 0.2122 - val_loss: 0.3019
+Epoch 85/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20628   130]
+ [ 1378  1473]]
+accuracy = 0.9361260533332825
+precision class 0 = 0.9373807311058044
+precision class 1 = 0.9189020395278931
+recall class 0 = 0.9937373399734497
+recall class 1 = 0.5166608095169067
+AUC of ROC = 0.9431732024797529
+AUC of PRC = 0.8027355755553723
+min(+P, Se) = 0.7246580147316731
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2715   71]
+ [ 296  140]]
+accuracy = 0.8860955834388733
+precision class 0 = 0.9016937613487244
+precision class 1 = 0.6635071039199829
+recall class 0 = 0.974515438079834
+recall class 1 = 0.3211009204387665
+AUC of ROC = 0.851951434762278
+AUC of PRC = 0.5394021633463313
+min(+P, Se) = 0.5045871559633027
+Epoch 00085: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch85.test0.31108542541903345.state
+ - 977s - loss: 0.2117 - val_loss: 0.3111
+Epoch 86/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20620   138]
+ [ 1331  1520]]
+accuracy = 0.9377779364585876
+precision class 0 = 0.9393649697303772
+precision class 1 = 0.9167671799659729
+recall class 0 = 0.993351936340332
+recall class 1 = 0.5331462621688843
+AUC of ROC = 0.9450878522651622
+AUC of PRC = 0.8076863180114365
+min(+P, Se) = 0.7293417366946778
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2710   76]
+ [ 303  133]]
+accuracy = 0.882371187210083
+precision class 0 = 0.8994357585906982
+precision class 1 = 0.6363636255264282
+recall class 0 = 0.972720742225647
+recall class 1 = 0.30504587292671204
+AUC of ROC = 0.8511067789800905
+AUC of PRC = 0.5301757585824364
+min(+P, Se) = 0.4954128440366973
+Epoch 00086: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch86.test0.3130557406809317.state
+ - 969s - loss: 0.2100 - val_loss: 0.3131
+Epoch 87/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20541   217]
+ [ 1226  1625]]
+accuracy = 0.9388792514801025
+precision class 0 = 0.943676233291626
+precision class 1 = 0.8821932673454285
+recall class 0 = 0.9895461797714233
+recall class 1 = 0.5699754357337952
+AUC of ROC = 0.9454006550541898
+AUC of PRC = 0.804991533334968
+min(+P, Se) = 0.7292178183093652
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2693   93]
+ [ 288  148]]
+accuracy = 0.8817504644393921
+precision class 0 = 0.9033881425857544
+precision class 1 = 0.6141079068183899
+recall class 0 = 0.9666188359260559
+recall class 1 = 0.33944955468177795
+AUC of ROC = 0.8483707034517278
+AUC of PRC = 0.5284495212633532
+min(+P, Se) = 0.5055928411633109
+Epoch 00087: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch87.test0.3076812937638354.state
+ - 982s - loss: 0.2080 - val_loss: 0.3077
+Epoch 88/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20606   152]
+ [ 1329  1522]]
+accuracy = 0.9372696876525879
+precision class 0 = 0.9394118785858154
+precision class 1 = 0.9091995358467102
+recall class 0 = 0.9926775097846985
+recall class 1 = 0.5338477492332458
+AUC of ROC = 0.9446427605265184
+AUC of PRC = 0.8059336506822753
+min(+P, Se) = 0.7225534900035075
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2710   76]
+ [ 305  131]]
+accuracy = 0.8817504644393921
+precision class 0 = 0.8988391160964966
+precision class 1 = 0.6328502297401428
+recall class 0 = 0.972720742225647
+recall class 1 = 0.30045872926712036
+AUC of ROC = 0.8500908869379664
+AUC of PRC = 0.5194425876371326
+min(+P, Se) = 0.48863636363636365
+Epoch 00088: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch88.test0.3130570297365896.state
+ - 975s - loss: 0.2081 - val_loss: 0.3131
+Epoch 89/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20559   199]
+ [ 1221  1630]]
+accuracy = 0.9398534297943115
+precision class 0 = 0.9439393877983093
+precision class 1 = 0.8911973834037781
+recall class 0 = 0.9904133081436157
+recall class 1 = 0.5717292428016663
+AUC of ROC = 0.9445136651663104
+AUC of PRC = 0.8088733690263579
+min(+P, Se) = 0.7271132935811996
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2690   96]
+ [ 284  152]]
+accuracy = 0.8820608258247375
+precision class 0 = 0.904505729675293
+precision class 1 = 0.6129032373428345
+recall class 0 = 0.9655420184135437
+recall class 1 = 0.3486238420009613
+AUC of ROC = 0.8422996371108492
+AUC of PRC = 0.5146163260519708
+min(+P, Se) = 0.4931506849315068
+Epoch 00089: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch89.test0.31153171829772913.state
+ - 987s - loss: 0.2106 - val_loss: 0.3115
+Epoch 90/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20508   250]
+ [ 1149  1702]]
+accuracy = 0.9407429099082947
+precision class 0 = 0.9469455480575562
+precision class 1 = 0.8719262480735779
+recall class 0 = 0.9879564642906189
+recall class 1 = 0.5969834923744202
+AUC of ROC = 0.9458464311334212
+AUC of PRC = 0.8106664418718083
+min(+P, Se) = 0.7320238512802525
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2677  109]
+ [ 279  157]]
+accuracy = 0.8795778751373291
+precision class 0 = 0.9056156873703003
+precision class 1 = 0.5902255773544312
+recall class 0 = 0.9608758091926575
+recall class 1 = 0.3600917458534241
+AUC of ROC = 0.8496471545143807
+AUC of PRC = 0.5232968379703891
+min(+P, Se) = 0.4954337899543379
+Epoch 00090: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch90.test0.30456783846575675.state
+ - 976s - loss: 0.2129 - val_loss: 0.3046
+Epoch 91/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20599   159]
+ [ 1273  1578]]
+accuracy = 0.9393451809883118
+precision class 0 = 0.9417977333068848
+precision class 1 = 0.9084628820419312
+recall class 0 = 0.9923403263092041
+recall class 1 = 0.5534899830818176
+AUC of ROC = 0.9460273082647492
+AUC of PRC = 0.8112997524344558
+min(+P, Se) = 0.7282608695652174
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2692   94]
+ [ 293  143]]
+accuracy = 0.8798882961273193
+precision class 0 = 0.9018425345420837
+precision class 1 = 0.6033755540847778
+recall class 0 = 0.9662598967552185
+recall class 1 = 0.3279816508293152
+AUC of ROC = 0.8494816810131918
+AUC of PRC = 0.522901018073046
+min(+P, Se) = 0.4908675799086758
+Epoch 00091: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch91.test0.3032491129448997.state
+ - 971s - loss: 0.2079 - val_loss: 0.3032
+Epoch 92/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20605   153]
+ [ 1311  1540]]
+accuracy = 0.9379897713661194
+precision class 0 = 0.9401807188987732
+precision class 1 = 0.9096278548240662
+recall class 0 = 0.99262934923172
+recall class 1 = 0.5401613712310791
+AUC of ROC = 0.9447225326725318
+AUC of PRC = 0.8084592649905417
+min(+P, Se) = 0.7270497547302032
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2708   78]
+ [ 302  134]]
+accuracy = 0.8820608258247375
+precision class 0 = 0.8996677994728088
+precision class 1 = 0.6320754885673523
+recall class 0 = 0.9720028638839722
+recall class 1 = 0.30733945965766907
+AUC of ROC = 0.8454419871309365
+AUC of PRC = 0.5244529679833412
+min(+P, Se) = 0.4908256880733945
+Epoch 00092: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch92.test0.31555297011584693.state
+ - 973s - loss: 0.2104 - val_loss: 0.3156
+Epoch 93/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20552   206]
+ [ 1243  1608]]
+accuracy = 0.9386250972747803
+precision class 0 = 0.9429685473442078
+precision class 1 = 0.88643878698349
+recall class 0 = 0.9900761246681213
+recall class 1 = 0.5640126466751099
+AUC of ROC = 0.9449730182248516
+AUC of PRC = 0.8084818792695613
+min(+P, Se) = 0.7298528381219341
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2695   91]
+ [ 291  145]]
+accuracy = 0.8814401030540466
+precision class 0 = 0.9025452136993408
+precision class 1 = 0.6144067645072937
+recall class 0 = 0.9673366546630859
+recall class 1 = 0.33256879448890686
+AUC of ROC = 0.8433805660016992
+AUC of PRC = 0.5209219843385954
+min(+P, Se) = 0.5
+Epoch 00093: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch93.test0.3108206094745003.state
+ - 970s - loss: 0.2109 - val_loss: 0.3108
+Epoch 94/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20489   269]
+ [ 1131  1720]]
+accuracy = 0.9407005906105042
+precision class 0 = 0.9476873278617859
+precision class 1 = 0.864756166934967
+recall class 0 = 0.9870411157608032
+recall class 1 = 0.6032971143722534
+AUC of ROC = 0.94564478722229
+AUC of PRC = 0.8108005907728467
+min(+P, Se) = 0.7327253595229744
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2671  115]
+ [ 268  168]]
+accuracy = 0.8811297416687012
+precision class 0 = 0.9088125228881836
+precision class 1 = 0.5936395525932312
+recall class 0 = 0.9587221741676331
+recall class 1 = 0.38532111048698425
+AUC of ROC = 0.8452295883085151
+AUC of PRC = 0.5161093610306036
+min(+P, Se) = 0.48394495412844035
+Epoch 00094: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch94.test0.31216213621157507.state
+ - 991s - loss: 0.2111 - val_loss: 0.3122
+Epoch 95/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20554   204]
+ [ 1214  1637]]
+accuracy = 0.9399381875991821
+precision class 0 = 0.9442300796508789
+precision class 1 = 0.889190673828125
+recall class 0 = 0.9901724457740784
+recall class 1 = 0.5741844773292542
+AUC of ROC = 0.9445528331041328
+AUC of PRC = 0.8084447384866081
+min(+P, Se) = 0.729568572430726
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2691   95]
+ [ 285  151]]
+accuracy = 0.8820608258247375
+precision class 0 = 0.9042338728904724
+precision class 1 = 0.6138211488723755
+recall class 0 = 0.9659009575843811
+recall class 1 = 0.34633028507232666
+AUC of ROC = 0.8442194590251386
+AUC of PRC = 0.5230012272060327
+min(+P, Se) = 0.5
+Epoch 00095: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch95.test0.3134798673574115.state
+ - 972s - loss: 0.2099 - val_loss: 0.3135
+Epoch 96/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20615   143]
+ [ 1324  1527]]
+accuracy = 0.9378626942634583
+precision class 0 = 0.93965083360672
+precision class 1 = 0.9143712520599365
+recall class 0 = 0.9931110739707947
+recall class 1 = 0.5356015563011169
+AUC of ROC = 0.9455653445735965
+AUC of PRC = 0.8088700277832349
+min(+P, Se) = 0.7257102770957559
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2705   81]
+ [ 292  144]]
+accuracy = 0.8842334151268005
+precision class 0 = 0.9025692343711853
+precision class 1 = 0.6399999856948853
+recall class 0 = 0.97092604637146
+recall class 1 = 0.3302752375602722
+AUC of ROC = 0.8468695047979083
+AUC of PRC = 0.5246398701553976
+min(+P, Se) = 0.4863013698630137
+Epoch 00096: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch96.test0.3054587668898237.state
+ - 981s - loss: 0.2107 - val_loss: 0.3055
+Epoch 97/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20562   196]
+ [ 1216  1635]]
+accuracy = 0.9401922821998596
+precision class 0 = 0.9441638588905334
+precision class 1 = 0.8929546475410461
+recall class 0 = 0.990557849407196
+recall class 1 = 0.5734829902648926
+AUC of ROC = 0.9454028179083922
+AUC of PRC = 0.8115925992324128
+min(+P, Se) = 0.7239565064889513
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2687   99]
+ [ 288  148]]
+accuracy = 0.8798882961273193
+precision class 0 = 0.9031932950019836
+precision class 1 = 0.5991902947425842
+recall class 0 = 0.9644652009010315
+recall class 1 = 0.33944955468177795
+AUC of ROC = 0.8489128143996523
+AUC of PRC = 0.524373625879538
+min(+P, Se) = 0.5
+Epoch 00097: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch97.test0.3064918799162799.state
+ - 979s - loss: 0.2093 - val_loss: 0.3065
+Epoch 98/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20580   178]
+ [ 1247  1604]]
+accuracy = 0.9396416544914246
+precision class 0 = 0.9428689479827881
+precision class 1 = 0.9001122117042542
+recall class 0 = 0.9914249777793884
+recall class 1 = 0.5626096129417419
+AUC of ROC = 0.9447138728070728
+AUC of PRC = 0.8100162952925263
+min(+P, Se) = 0.7247545582047685
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2689   97]
+ [ 288  148]]
+accuracy = 0.8805090188980103
+precision class 0 = 0.9032583236694336
+precision class 1 = 0.6040816307067871
+recall class 0 = 0.9651830792427063
+recall class 1 = 0.33944955468177795
+AUC of ROC = 0.8408819984588736
+AUC of PRC = 0.5167370855642625
+min(+P, Se) = 0.4954128440366973
+Epoch 00098: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch98.test0.3063755695731798.state
+ - 966s - loss: 0.2094 - val_loss: 0.3064
+Epoch 99/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20524   234]
+ [ 1188  1663]]
+accuracy = 0.9397687315940857
+precision class 0 = 0.9452837109565735
+precision class 1 = 0.8766473531723022
+recall class 0 = 0.9887272119522095
+recall class 1 = 0.5833041071891785
+AUC of ROC = 0.9453773198850214
+AUC of PRC = 0.8080792281987722
+min(+P, Se) = 0.7229042441248684
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2674  112]
+ [ 276  160]]
+accuracy = 0.8795778751373291
+precision class 0 = 0.9064406752586365
+precision class 1 = 0.5882353186607361
+recall class 0 = 0.9597989916801453
+recall class 1 = 0.3669724762439728
+AUC of ROC = 0.8455786468383859
+AUC of PRC = 0.5223222255090725
+min(+P, Se) = 0.5022935779816514
+Epoch 00099: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch99.test0.3111790597212196.state
+ - 983s - loss: 0.2120 - val_loss: 0.3112
+Epoch 100/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[20519   239]
+ [ 1157  1694]]
+accuracy = 0.9408699870109558
+precision class 0 = 0.9466229677200317
+precision class 1 = 0.8763579726219177
+recall class 0 = 0.9884863495826721
+recall class 1 = 0.5941774845123291
+AUC of ROC = 0.9462188813860002
+AUC of PRC = 0.8109034676064681
+min(+P, Se) = 0.7282608695652174
+
+==>predicting on validation
+
+
+confusion matrix:
+[[2678  108]
+ [ 278  158]]
+accuracy = 0.8801986575126648
+precision class 0 = 0.9059540033340454
+precision class 1 = 0.5939849615097046
+recall class 0 = 0.9612347483634949
+recall class 1 = 0.3623853325843811
+AUC of ROC = 0.847110717414069
+AUC of PRC = 0.5178624165557473
+min(+P, Se) = 0.48394495412844035
+Epoch 00100: saving model to mimic3models/in_hospital_mortality/keras_states/k_lstm.n16.d0.3.dep2.bs8.ts1.0.epoch100.test0.3140388735975263.state
+ - 969s - loss: 0.2066 - val_loss: 0.3140
+Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x7f077e6402b0>>
+Traceback (most recent call last):
+  File "/home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 686, in __del__
+TypeError: 'NoneType' object is not callable
+136738.42user 16826.57system 26:42:25elapsed 159%CPU (0avgtext+0avgdata 4793100maxresident)k
+0inputs+27512outputs (0major+1225737minor)pagefaults 0swaps
