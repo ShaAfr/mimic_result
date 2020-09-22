@@ -1,0 +1,1259 @@
+*****************age_two_unit**************
+Using TensorFlow backend.
+Namespace(batch_norm=False, batch_size=8, beta_1=0.9, data='/home/danfeng/sharmin/mimic3-benchmarks/mimic3models/decompensation/../../data/decompensation/', deep_supervision=False, depth=1, dim=128, dropout=0.0, epochs=100, imputation='previous', l1=0, l2=0, load_state='', lr=0.001, mode='train', network='mimic3models/keras_models/lstm.py', normalizer_state=None, optimizer='adam', output_dir='mimic3models/decompensation', prefix='', rec_dropout=0.0, save_every=1, size_coef=4.0, small_part=False, timestep=1.0, verbose=2)
+==> using model mimic3models/keras_models/lstm.py
+==> not used params in network class: dict_keys(['output_dir', 'load_state', 'l2', 'lr', 'data', 'imputation', 'beta_1', 'l1', 'normalizer_state', 'save_every', 'network', 'timestep', 'epochs', 'verbose', 'mode', 'optimizer', 'prefix', 'batch_size', 'size_coef', 'small_part', 'header'])
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1364: calling reduce_any (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1247: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+==> model.final_name: k_lstm.n128.dep1.bs8.ts1.0
+==> compiling the model
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1349: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+X (InputLayer)               (None, None, 76)          0         
+_________________________________________________________________
+masking_1 (Masking)          (None, None, 76)          0         
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 128)               104960    
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 129       
+=================================================================
+Total params: 105,089
+Trainable params: 105,089
+Non-trainable params: 0
+_________________________________________________________________
+==> training
+Epoch 1/100
+2020-09-11 15:51:12.089242: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2020-09-11 15:51:12.592099: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:897] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-09-11 15:51:12.593364: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1405] Found device 0 with properties: 
+name: GRID P40-12Q major: 6 minor: 1 memoryClockRate(GHz): 1.531
+pciBusID: 0000:00:0a.0
+totalMemory: 12.00GiB freeMemory: 9.54GiB
+2020-09-11 15:51:12.593422: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1484] Adding visible gpu devices: 0
+2020-09-11 15:51:15.287769: I tensorflow/core/common_runtime/gpu/gpu_device.cc:965] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-09-11 15:51:15.287900: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971]      0 
+2020-09-11 15:51:15.287934: I tensorflow/core/common_runtime/gpu/gpu_device.cc:984] 0:   N 
+2020-09-11 15:51:15.289415: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1097] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 9224 MB memory) -> physical GPU (device: 0, name: GRID P40-12Q, pci bus id: 0000:00:0a.0, compute capability: 6.1)
+
+==>predicting on train
+
+
+confusion matrix:
+[[15659     8]
+ [  319    14]]
+accuracy = 0.979562520980835
+precision class 0 = 0.9800350666046143
+precision class 1 = 0.6363636255264282
+recall class 0 = 0.9994893670082092
+recall class 1 = 0.042042043060064316
+AUC of ROC = 0.8650767637491324
+AUC of PRC = 0.21942739882417917
+min(+P, Se) = 0.2756598240469208
+
+==>predicting on validation
+Command terminated by signal 9
+1767.19user 213.74system 28:32.40elapsed 115%CPU (0avgtext+0avgdata 17766076maxresident)k
+17949440inputs+56outputs (96375major+4888054minor)pagefaults 0swaps
+*****************three_unit**************
+Using TensorFlow backend.
+Namespace(batch_norm=False, batch_size=8, beta_1=0.9, data='/home/danfeng/sharmin/mimic3-benchmarks/mimic3models/decompensation/../../data/decompensation/', deep_supervision=False, depth=1, dim=128, dropout=0.0, epochs=100, imputation='previous', l1=0, l2=0, load_state='', lr=0.001, mode='train', network='mimic3models/keras_models/lstm.py', normalizer_state=None, optimizer='adam', output_dir='mimic3models/decompensation', prefix='', rec_dropout=0.0, save_every=1, size_coef=4.0, small_part=False, timestep=1.0, verbose=2)
+==> using model mimic3models/keras_models/lstm.py
+==> not used params in network class: dict_keys(['mode', 'load_state', 'batch_size', 'data', 'l2', 'verbose', 'output_dir', 'save_every', 'network', 'beta_1', 'normalizer_state', 'l1', 'size_coef', 'epochs', 'optimizer', 'timestep', 'header', 'prefix', 'imputation', 'small_part', 'lr'])
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1364: calling reduce_any (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1247: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+==> model.final_name: k_lstm.n128.dep1.bs8.ts1.0
+==> compiling the model
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1349: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+X (InputLayer)               (None, None, 76)          0         
+_________________________________________________________________
+masking_1 (Masking)          (None, None, 76)          0         
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 128)               104960    
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 129       
+=================================================================
+Total params: 105,089
+Trainable params: 105,089
+Non-trainable params: 0
+_________________________________________________________________
+==> training
+Epoch 1/100
+2020-09-11 16:18:49.356255: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2020-09-11 16:18:49.770979: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:897] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-09-11 16:18:49.771811: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1405] Found device 0 with properties: 
+name: GRID P40-12Q major: 6 minor: 1 memoryClockRate(GHz): 1.531
+pciBusID: 0000:00:0a.0
+totalMemory: 12.00GiB freeMemory: 9.29GiB
+2020-09-11 16:18:49.771879: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1484] Adding visible gpu devices: 0
+2020-09-11 16:18:52.164527: I tensorflow/core/common_runtime/gpu/gpu_device.cc:965] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-09-11 16:18:52.164641: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971]      0 
+2020-09-11 16:18:52.164659: I tensorflow/core/common_runtime/gpu/gpu_device.cc:984] 0:   N 
+2020-09-11 16:18:52.165158: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1097] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 8978 MB memory) -> physical GPU (device: 0, name: GRID P40-12Q, pci bus id: 0000:00:0a.0, compute capability: 6.1)
+
+==>predicting on train
+
+
+confusion matrix:
+[[15595    26]
+ [  342    37]]
+accuracy = 0.9769999980926514
+precision class 0 = 0.9785404801368713
+precision class 1 = 0.5873016119003296
+recall class 0 = 0.998335599899292
+recall class 1 = 0.09762533009052277
+AUC of ROC = 0.8711155860649666
+AUC of PRC = 0.2347267026021452
+min(+P, Se) = 0.28232189973614774
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7806   11]
+ [ 164   19]]
+accuracy = 0.9781249761581421
+precision class 0 = 0.9794228076934814
+precision class 1 = 0.6333333253860474
+recall class 0 = 0.9985927939414978
+recall class 1 = 0.10382513701915741
+AUC of ROC = 0.8518948823182764
+AUC of PRC = 0.26357084074937037
+min(+P, Se) = 0.3005464480874317
+Epoch 00001: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk1.test0.091005984778516.state
+ - 1515s - loss: 0.0961 - val_loss: 0.0910
+Epoch 2/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15613    10]
+ [  348    29]]
+accuracy = 0.9776250123977661
+precision class 0 = 0.9781968593597412
+precision class 1 = 0.7435897588729858
+recall class 0 = 0.9993599057197571
+recall class 1 = 0.07692307978868484
+AUC of ROC = 0.8708988702808601
+AUC of PRC = 0.2962399103860608
+min(+P, Se) = 0.34748010610079577
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7821    3]
+ [ 163   13]]
+accuracy = 0.9792500138282776
+precision class 0 = 0.9795841574668884
+precision class 1 = 0.8125
+recall class 0 = 0.9996165633201599
+recall class 1 = 0.07386363297700882
+AUC of ROC = 0.863121485173824
+AUC of PRC = 0.28016268594811183
+min(+P, Se) = 0.3128491620111732
+Epoch 00002: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk2.test0.08175993814331013.state
+ - 1206s - loss: 0.0820 - val_loss: 0.0818
+Epoch 3/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15632     9]
+ [  331    28]]
+accuracy = 0.9787499904632568
+precision class 0 = 0.9792645573616028
+precision class 1 = 0.7567567825317383
+recall class 0 = 0.9994245767593384
+recall class 1 = 0.07799442857503891
+AUC of ROC = 0.8772099041890297
+AUC of PRC = 0.2905638348119132
+min(+P, Se) = 0.31197771587743733
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7824    5]
+ [ 164    7]]
+accuracy = 0.9788749814033508
+precision class 0 = 0.9794691801071167
+precision class 1 = 0.5833333134651184
+recall class 0 = 0.9993613362312317
+recall class 1 = 0.04093567281961441
+AUC of ROC = 0.8636842030567115
+AUC of PRC = 0.2517646052504939
+min(+P, Se) = 0.30409356725146197
+Epoch 00003: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk3.test0.08615464366367087.state
+ - 1147s - loss: 0.0857 - val_loss: 0.0862
+Epoch 4/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15612    24]
+ [  309    55]]
+accuracy = 0.9791874885559082
+precision class 0 = 0.9805916547775269
+precision class 1 = 0.6962025165557861
+recall class 0 = 0.9984650611877441
+recall class 1 = 0.15109890699386597
+AUC of ROC = 0.8724525187015594
+AUC of PRC = 0.3207069210733146
+min(+P, Se) = 0.35772357723577236
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7809    6]
+ [ 168   17]]
+accuracy = 0.9782500267028809
+precision class 0 = 0.9789394736289978
+precision class 1 = 0.739130437374115
+recall class 0 = 0.9992322325706482
+recall class 1 = 0.09189189225435257
+AUC of ROC = 0.8557085300271482
+AUC of PRC = 0.294505912474462
+min(+P, Se) = 0.33513513513513515
+Epoch 00004: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk4.test0.07911560770170763.state
+ - 1160s - loss: 0.0787 - val_loss: 0.0791
+Epoch 5/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15576    43]
+ [  298    83]]
+accuracy = 0.9786875247955322
+precision class 0 = 0.9812271595001221
+precision class 1 = 0.658730149269104
+recall class 0 = 0.9972469210624695
+recall class 1 = 0.2178477644920349
+AUC of ROC = 0.8784054651789436
+AUC of PRC = 0.33342698523252084
+min(+P, Se) = 0.3471502590673575
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7802   19]
+ [ 143   36]]
+accuracy = 0.9797499775886536
+precision class 0 = 0.9820012450218201
+precision class 1 = 0.6545454263687134
+recall class 0 = 0.9975706338882446
+recall class 1 = 0.20111732184886932
+AUC of ROC = 0.8658103558747077
+AUC of PRC = 0.2865713115268879
+min(+P, Se) = 0.3407821229050279
+Epoch 00005: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk5.test0.07646764442697167.state
+ - 1160s - loss: 0.0801 - val_loss: 0.0765
+Epoch 6/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15608     9]
+ [  351    32]]
+accuracy = 0.9775000214576721
+precision class 0 = 0.97800612449646
+precision class 1 = 0.7804877758026123
+recall class 0 = 0.9994236826896667
+recall class 1 = 0.08355091512203217
+AUC of ROC = 0.8933849117693429
+AUC of PRC = 0.33147582085965405
+min(+P, Se) = 0.34464751958224543
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7823    6]
+ [ 159   12]]
+accuracy = 0.9793750047683716
+precision class 0 = 0.9800801873207092
+precision class 1 = 0.6666666865348816
+recall class 0 = 0.999233603477478
+recall class 1 = 0.07017543911933899
+AUC of ROC = 0.8541559757954941
+AUC of PRC = 0.26439253422101494
+min(+P, Se) = 0.2972972972972973
+Epoch 00006: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk6.test0.08357057316368446.state
+ - 1160s - loss: 0.0835 - val_loss: 0.0836
+Epoch 7/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15617    10]
+ [  342    31]]
+accuracy = 0.9779999852180481
+precision class 0 = 0.9785701036453247
+precision class 1 = 0.7560975551605225
+recall class 0 = 0.9993600845336914
+recall class 1 = 0.08310992270708084
+AUC of ROC = 0.8871543906186978
+AUC of PRC = 0.3070190568019164
+min(+P, Se) = 0.3395225464190981
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7820    1]
+ [ 169   10]]
+accuracy = 0.9787499904632568
+precision class 0 = 0.9788458943367004
+precision class 1 = 0.9090909361839294
+recall class 0 = 0.9998721480369568
+recall class 1 = 0.05586592108011246
+AUC of ROC = 0.8904282196835764
+AUC of PRC = 0.3043856796520181
+min(+P, Se) = 0.31843575418994413
+Epoch 00007: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk7.test0.0715135766210733.state
+ - 1171s - loss: 0.0804 - val_loss: 0.0715
+Epoch 8/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15629    23]
+ [  320    28]]
+accuracy = 0.9785624742507935
+precision class 0 = 0.9799360632896423
+precision class 1 = 0.5490196347236633
+recall class 0 = 0.9985305666923523
+recall class 1 = 0.08045977354049683
+AUC of ROC = 0.8591242608634347
+AUC of PRC = 0.21300526853369142
+min(+P, Se) = 0.2571428571428571
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7794   11]
+ [ 176   19]]
+accuracy = 0.9766250252723694
+precision class 0 = 0.9779171943664551
+precision class 1 = 0.6333333253860474
+recall class 0 = 0.9985906481742859
+recall class 1 = 0.09743589907884598
+AUC of ROC = 0.8722646561211582
+AUC of PRC = 0.23412672364434842
+min(+P, Se) = 0.2780487804878049
+Epoch 00008: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk8.test0.0785601258056704.state
+ - 1160s - loss: 0.0789 - val_loss: 0.0786
+Epoch 9/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15621    22]
+ [  305    52]]
+accuracy = 0.979562520980835
+precision class 0 = 0.9808489084243774
+precision class 1 = 0.7027027010917664
+recall class 0 = 0.9985936284065247
+recall class 1 = 0.14565826952457428
+AUC of ROC = 0.8794714203523256
+AUC of PRC = 0.3019534885732316
+min(+P, Se) = 0.3370473537604457
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7793   14]
+ [ 173   20]]
+accuracy = 0.9766250252723694
+precision class 0 = 0.9782826900482178
+precision class 1 = 0.5882353186607361
+recall class 0 = 0.9982067346572876
+recall class 1 = 0.10362694412469864
+AUC of ROC = 0.8811648374548947
+AUC of PRC = 0.278608340278876
+min(+P, Se) = 0.3316062176165803
+Epoch 00009: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk9.test0.07310142489476129.state
+ - 1175s - loss: 0.0800 - val_loss: 0.0731
+Epoch 10/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15614    13]
+ [  340    33]]
+accuracy = 0.9779375195503235
+precision class 0 = 0.9786887168884277
+precision class 1 = 0.717391312122345
+recall class 0 = 0.9991680979728699
+recall class 1 = 0.08847185224294662
+AUC of ROC = 0.9019286925375428
+AUC of PRC = 0.3318170590586056
+min(+P, Se) = 0.36193029490616624
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7822   13]
+ [ 145   20]]
+accuracy = 0.9802500009536743
+precision class 0 = 0.9817999005317688
+precision class 1 = 0.6060606241226196
+recall class 0 = 0.9983407855033875
+recall class 1 = 0.12121212482452393
+AUC of ROC = 0.8457666647328421
+AUC of PRC = 0.22655519001358132
+min(+P, Se) = 0.24848484848484848
+Epoch 00010: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk10.test0.06988992417429109.state
+ - 1143s - loss: 0.0745 - val_loss: 0.0699
+16560.46user 1560.88system 3:20:17elapsed 150%CPU (0avgtext+0avgdata 18430968maxresident)k
+2516584inputs+25480outputs (3289major+8270866minor)pagefaults 0swaps
+****************four_unit***********
+Using TensorFlow backend.
+Namespace(batch_norm=False, batch_size=8, beta_1=0.9, data='/home/danfeng/sharmin/mimic3-benchmarks/mimic3models/decompensation/../../data/decompensation/', deep_supervision=False, depth=1, dim=128, dropout=0.0, epochs=100, imputation='previous', l1=0, l2=0, load_state='', lr=0.001, mode='train', network='mimic3models/keras_models/lstm.py', normalizer_state=None, optimizer='adam', output_dir='mimic3models/decompensation', prefix='', rec_dropout=0.0, save_every=1, size_coef=4.0, small_part=False, timestep=1.0, verbose=2)
+==> using model mimic3models/keras_models/lstm.py
+==> not used params in network class: dict_keys(['prefix', 'header', 'small_part', 'batch_size', 'output_dir', 'normalizer_state', 'beta_1', 'load_state', 'mode', 'l1', 'save_every', 'epochs', 'network', 'size_coef', 'optimizer', 'timestep', 'verbose', 'imputation', 'lr', 'l2', 'data'])
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1364: calling reduce_any (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1247: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+==> model.final_name: k_lstm.n128.dep1.bs8.ts1.0
+==> compiling the model
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1349: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+X (InputLayer)               (None, None, 76)          0         
+_________________________________________________________________
+masking_1 (Masking)          (None, None, 76)          0         
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 128)               104960    
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 129       
+=================================================================
+Total params: 105,089
+Trainable params: 105,089
+Non-trainable params: 0
+_________________________________________________________________
+==> training
+Epoch 1/100
+2020-09-11 19:38:45.428430: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2020-09-11 19:38:45.943421: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:897] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-09-11 19:38:45.944274: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1405] Found device 0 with properties: 
+name: GRID P40-12Q major: 6 minor: 1 memoryClockRate(GHz): 1.531
+pciBusID: 0000:00:0a.0
+totalMemory: 12.00GiB freeMemory: 11.03GiB
+2020-09-11 19:38:45.944317: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1484] Adding visible gpu devices: 0
+2020-09-11 19:38:48.243654: I tensorflow/core/common_runtime/gpu/gpu_device.cc:965] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-09-11 19:38:48.243749: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971]      0 
+2020-09-11 19:38:48.243767: I tensorflow/core/common_runtime/gpu/gpu_device.cc:984] 0:   N 
+2020-09-11 19:38:48.250516: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1097] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10671 MB memory) -> physical GPU (device: 0, name: GRID P40-12Q, pci bus id: 0000:00:0a.0, compute capability: 6.1)
+
+==>predicting on train
+
+
+confusion matrix:
+[[15615     3]
+ [  377     5]]
+accuracy = 0.9762499928474426
+precision class 0 = 0.9764257073402405
+precision class 1 = 0.625
+recall class 0 = 0.9998078942298889
+recall class 1 = 0.013089004904031754
+AUC of ROC = 0.8629432477896695
+AUC of PRC = 0.18286249702871715
+min(+P, Se) = 0.2513089005235602
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7815    2]
+ [ 179    4]]
+accuracy = 0.9773749709129333
+precision class 0 = 0.9776082038879395
+precision class 1 = 0.6666666865348816
+recall class 0 = 0.999744176864624
+recall class 1 = 0.02185792289674282
+AUC of ROC = 0.8529979846362594
+AUC of PRC = 0.2507645936692052
+min(+P, Se) = 0.29508196721311475
+Epoch 00001: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk1.test0.08619278901582583.state
+ - 1427s - loss: 0.0968 - val_loss: 0.0862
+Epoch 2/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15623     2]
+ [  367     8]]
+accuracy = 0.976937472820282
+precision class 0 = 0.9770481586456299
+precision class 1 = 0.800000011920929
+recall class 0 = 0.9998720288276672
+recall class 1 = 0.02133333310484886
+AUC of ROC = 0.8610931199999999
+AUC of PRC = 0.2643609679742711
+min(+P, Se) = 0.30133333333333334
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7820    0]
+ [ 177    3]]
+accuracy = 0.9778749942779541
+precision class 0 = 0.9778667092323303
+precision class 1 = 1.0
+recall class 0 = 1.0
+recall class 1 = 0.01666666753590107
+AUC of ROC = 0.8569671781756181
+AUC of PRC = 0.2735537764646294
+min(+P, Se) = 0.32222222222222224
+Epoch 00002: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk2.test0.08093162886309438.state
+ - 1153s - loss: 0.0906 - val_loss: 0.0809
+Epoch 3/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15598    13]
+ [  350    39]]
+accuracy = 0.9773125052452087
+precision class 0 = 0.9780536890029907
+precision class 1 = 0.75
+recall class 0 = 0.999167263507843
+recall class 1 = 0.10025706887245178
+AUC of ROC = 0.8975248815226361
+AUC of PRC = 0.30571309363432886
+min(+P, Se) = 0.32908163265306123
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7817   11]
+ [ 161   11]]
+accuracy = 0.9785000085830688
+precision class 0 = 0.9798194766044617
+precision class 1 = 0.5
+recall class 0 = 0.9985947608947754
+recall class 1 = 0.06395348906517029
+AUC of ROC = 0.8725769004527575
+AUC of PRC = 0.26365556676677104
+min(+P, Se) = 0.3259668508287293
+Epoch 00003: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk3.test0.08199629964726046.state
+ - 1141s - loss: 0.0877 - val_loss: 0.0820
+Epoch 4/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15572    11]
+ [  391    26]]
+accuracy = 0.9748749732971191
+precision class 0 = 0.9755058288574219
+precision class 1 = 0.7027027010917664
+recall class 0 = 0.999294102191925
+recall class 1 = 0.06235012039542198
+AUC of ROC = 0.8897396489533651
+AUC of PRC = 0.30128499135297765
+min(+P, Se) = 0.3253588516746411
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7815    3]
+ [ 172   10]]
+accuracy = 0.9781249761581421
+precision class 0 = 0.9784650206565857
+precision class 1 = 0.7692307829856873
+recall class 0 = 0.999616265296936
+recall class 1 = 0.05494505539536476
+AUC of ROC = 0.8627758146177179
+AUC of PRC = 0.2833933082321581
+min(+P, Se) = 0.34759358288770054
+Epoch 00004: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk4.test0.08063850066042505.state
+ - 1148s - loss: 0.0841 - val_loss: 0.0806
+Epoch 5/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15534    38]
+ [  369    59]]
+accuracy = 0.9745625257492065
+precision class 0 = 0.9767968058586121
+precision class 1 = 0.6082473993301392
+recall class 0 = 0.9975597262382507
+recall class 1 = 0.13785046339035034
+AUC of ROC = 0.8668811712131288
+AUC of PRC = 0.28309714374678296
+min(+P, Se) = 0.3247663551401869
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7805   16]
+ [ 155   24]]
+accuracy = 0.9786249995231628
+precision class 0 = 0.9805276393890381
+precision class 1 = 0.6000000238418579
+recall class 0 = 0.997954249382019
+recall class 1 = 0.1340782195329666
+AUC of ROC = 0.8620238164117663
+AUC of PRC = 0.2785940255779336
+min(+P, Se) = 0.3388888888888889
+Epoch 00005: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk5.test0.08066255697188898.state
+ - 1179s - loss: 0.0915 - val_loss: 0.0807
+Epoch 6/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15581    12]
+ [  370    37]]
+accuracy = 0.9761250019073486
+precision class 0 = 0.9768039584159851
+precision class 1 = 0.7551020383834839
+recall class 0 = 0.9992304444313049
+recall class 1 = 0.09090909361839294
+AUC of ROC = 0.8782372736711221
+AUC of PRC = 0.32472385960912903
+min(+P, Se) = 0.36609336609336607
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7834    4]
+ [ 155    7]]
+accuracy = 0.9801250100135803
+precision class 0 = 0.9805983304977417
+precision class 1 = 0.6363636255264282
+recall class 0 = 0.9994896650314331
+recall class 1 = 0.043209876865148544
+AUC of ROC = 0.8456104952447557
+AUC of PRC = 0.2312153506501354
+min(+P, Se) = 0.3148148148148148
+Epoch 00006: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk6.test0.08711816080589779.state
+ - 1157s - loss: 0.0826 - val_loss: 0.0871
+Epoch 7/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15559    35]
+ [  338    68]]
+accuracy = 0.976687490940094
+precision class 0 = 0.9787381291389465
+precision class 1 = 0.6601941585540771
+recall class 0 = 0.9977555274963379
+recall class 1 = 0.16748768091201782
+AUC of ROC = 0.8847941705506285
+AUC of PRC = 0.3004999036223403
+min(+P, Se) = 0.36341463414634145
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7802   13]
+ [ 167   18]]
+accuracy = 0.9775000214576721
+precision class 0 = 0.9790437817573547
+precision class 1 = 0.5806451439857483
+recall class 0 = 0.9983365535736084
+recall class 1 = 0.0972972959280014
+AUC of ROC = 0.8789348273417371
+AUC of PRC = 0.27006122029095797
+min(+P, Se) = 0.33513513513513515
+Epoch 00007: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk7.test0.07174584276671521.state
+ - 1146s - loss: 0.0774 - val_loss: 0.0717
+Epoch 8/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15530    48]
+ [  351    71]]
+accuracy = 0.9750624895095825
+precision class 0 = 0.977898120880127
+precision class 1 = 0.5966386795043945
+recall class 0 = 0.9969187378883362
+recall class 1 = 0.16824644804000854
+AUC of ROC = 0.8647272036941147
+AUC of PRC = 0.2811341497222659
+min(+P, Se) = 0.33254716981132076
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7775   34]
+ [ 154   37]]
+accuracy = 0.9764999747276306
+precision class 0 = 0.9805776476860046
+precision class 1 = 0.5211267471313477
+recall class 0 = 0.995646059513092
+recall class 1 = 0.19371727108955383
+AUC of ROC = 0.8710777402098129
+AUC of PRC = 0.28289651229199714
+min(+P, Se) = 0.31413612565445026
+Epoch 00008: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk8.test0.0772686350538861.state
+ - 1156s - loss: 0.0895 - val_loss: 0.0773
+Epoch 9/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15600    10]
+ [  357    33]]
+accuracy = 0.9770625233650208
+precision class 0 = 0.9776273965835571
+precision class 1 = 0.7674418687820435
+recall class 0 = 0.9993593692779541
+recall class 1 = 0.08461538702249527
+AUC of ROC = 0.8594406938353127
+AUC of PRC = 0.29469217658149827
+min(+P, Se) = 0.340153452685422
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7801    9]
+ [ 167   23]]
+accuracy = 0.9779999852180481
+precision class 0 = 0.9790411591529846
+precision class 1 = 0.71875
+recall class 0 = 0.9988476037979126
+recall class 1 = 0.12105263024568558
+AUC of ROC = 0.8862194217939214
+AUC of PRC = 0.2953445168030166
+min(+P, Se) = 0.33507853403141363
+Epoch 00009: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk9.test0.07471065013529733.state
+ - 1156s - loss: 0.0881 - val_loss: 0.0747
+Epoch 10/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15574    21]
+ [  349    56]]
+accuracy = 0.9768750071525574
+precision class 0 = 0.978082001209259
+precision class 1 = 0.7272727489471436
+recall class 0 = 0.9986534118652344
+recall class 1 = 0.13827160000801086
+AUC of ROC = 0.8887158356389948
+AUC of PRC = 0.3403232176519219
+min(+P, Se) = 0.3851851851851852
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7837    8]
+ [ 137   18]]
+accuracy = 0.9818750023841858
+precision class 0 = 0.982819139957428
+precision class 1 = 0.692307710647583
+recall class 0 = 0.9989802241325378
+recall class 1 = 0.11612903326749802
+AUC of ROC = 0.8645917884824935
+AUC of PRC = 0.2394510564667044
+min(+P, Se) = 0.2903225806451613
+Epoch 00010: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk10.test0.07099042185628787.state
+ - 1154s - loss: 0.0832 - val_loss: 0.0710
+Epoch 11/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15592    17]
+ [  341    50]]
+accuracy = 0.9776250123977661
+precision class 0 = 0.97859787940979
+precision class 1 = 0.746268630027771
+recall class 0 = 0.9989109039306641
+recall class 1 = 0.12787723541259766
+AUC of ROC = 0.8945947965294467
+AUC of PRC = 0.3812700822803094
+min(+P, Se) = 0.40966921119592875
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7830    9]
+ [ 146   15]]
+accuracy = 0.9806249737739563
+precision class 0 = 0.9816950559616089
+precision class 1 = 0.625
+recall class 0 = 0.9988518953323364
+recall class 1 = 0.09316769987344742
+AUC of ROC = 0.8788542555576949
+AUC of PRC = 0.25687766318789296
+min(+P, Se) = 0.3271604938271605
+Epoch 00011: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk11.test0.08178811055771075.state
+ - 1158s - loss: 0.0820 - val_loss: 0.0818
+Epoch 12/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15566    17]
+ [  351    66]]
+accuracy = 0.9769999980926514
+precision class 0 = 0.9779481291770935
+precision class 1 = 0.7951807379722595
+recall class 0 = 0.998909056186676
+recall class 1 = 0.158273383975029
+AUC of ROC = 0.9043837509085333
+AUC of PRC = 0.3919363794520583
+min(+P, Se) = 0.3971631205673759
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7797   15]
+ [ 163   25]]
+accuracy = 0.9777500033378601
+precision class 0 = 0.9795225858688354
+precision class 1 = 0.625
+recall class 0 = 0.9980798959732056
+recall class 1 = 0.13297872245311737
+AUC of ROC = 0.8571660075606541
+AUC of PRC = 0.28358194007938176
+min(+P, Se) = 0.3282051282051282
+Epoch 00012: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk12.test0.08828892276645638.state
+ - 1149s - loss: 0.0841 - val_loss: 0.0883
+Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x7f7c81635f98>>
+Traceback (most recent call last):
+  File "/home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 686, in __del__
+TypeError: 'NoneType' object is not callable
+19739.03user 1858.55system 3:55:41elapsed 152%CPU (0avgtext+0avgdata 18453476maxresident)k
+784032inputs+30584outputs (1919major+8913292minor)pagefaults 0swaps
+****************five_unit***********
+Using TensorFlow backend.
+Namespace(batch_norm=False, batch_size=8, beta_1=0.9, data='/home/danfeng/sharmin/mimic3-benchmarks/mimic3models/decompensation/../../data/decompensation/', deep_supervision=False, depth=1, dim=128, dropout=0.0, epochs=100, imputation='previous', l1=0, l2=0, load_state='', lr=0.001, mode='train', network='mimic3models/keras_models/lstm.py', normalizer_state=None, optimizer='adam', output_dir='mimic3models/decompensation', prefix='', rec_dropout=0.0, save_every=1, size_coef=4.0, small_part=False, timestep=1.0, verbose=2)
+==> using model mimic3models/keras_models/lstm.py
+==> not used params in network class: dict_keys(['mode', 'save_every', 'small_part', 'network', 'verbose', 'prefix', 'beta_1', 'header', 'l2', 'optimizer', 'batch_size', 'lr', 'size_coef', 'load_state', 'imputation', 'epochs', 'timestep', 'output_dir', 'data', 'l1', 'normalizer_state'])
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1364: calling reduce_any (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1247: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+==> model.final_name: k_lstm.n128.dep1.bs8.ts1.0
+==> compiling the model
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.5/site-packages/keras/backend/tensorflow_backend.py:1349: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+X (InputLayer)               (None, None, 76)          0         
+_________________________________________________________________
+masking_1 (Masking)          (None, None, 76)          0         
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 128)               104960    
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 129       
+=================================================================
+Total params: 105,089
+Trainable params: 105,089
+Non-trainable params: 0
+_________________________________________________________________
+==> training
+Epoch 1/100
+2020-09-11 23:34:27.426605: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2020-09-11 23:34:27.678094: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:897] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-09-11 23:34:27.678978: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1405] Found device 0 with properties: 
+name: GRID P40-12Q major: 6 minor: 1 memoryClockRate(GHz): 1.531
+pciBusID: 0000:00:0a.0
+totalMemory: 12.00GiB freeMemory: 11.03GiB
+2020-09-11 23:34:27.679004: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1484] Adding visible gpu devices: 0
+2020-09-11 23:34:28.061493: I tensorflow/core/common_runtime/gpu/gpu_device.cc:965] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-09-11 23:34:28.061553: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971]      0 
+2020-09-11 23:34:28.061561: I tensorflow/core/common_runtime/gpu/gpu_device.cc:984] 0:   N 
+2020-09-11 23:34:28.061809: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1097] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10671 MB memory) -> physical GPU (device: 0, name: GRID P40-12Q, pci bus id: 0000:00:0a.0, compute capability: 6.1)
+
+==>predicting on train
+
+
+confusion matrix:
+[[15498    79]
+ [  341    82]]
+accuracy = 0.9737499952316284
+precision class 0 = 0.9784708619117737
+precision class 1 = 0.5093167424201965
+recall class 0 = 0.9949284195899963
+recall class 1 = 0.19385342299938202
+AUC of ROC = 0.8656033604737299
+AUC of PRC = 0.2753451323149027
+min(+P, Se) = 0.3209302325581395
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7784   34]
+ [ 150   32]]
+accuracy = 0.9769999980926514
+precision class 0 = 0.9810940027236938
+precision class 1 = 0.4848484992980957
+recall class 0 = 0.9956510663032532
+recall class 1 = 0.17582418024539948
+AUC of ROC = 0.859758685929062
+AUC of PRC = 0.23016414854748038
+min(+P, Se) = 0.27472527472527475
+Epoch 00001: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk1.test0.09244143735710532.state
+ - 1412s - loss: 0.0986 - val_loss: 0.0924
+Epoch 2/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15562    25]
+ [  365    48]]
+accuracy = 0.9756249785423279
+precision class 0 = 0.9770829677581787
+precision class 1 = 0.6575342416763306
+recall class 0 = 0.998396098613739
+recall class 1 = 0.11622276157140732
+AUC of ROC = 0.8841568165934516
+AUC of PRC = 0.308871328937484
+min(+P, Se) = 0.3486682808716707
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7813   10]
+ [ 157   20]]
+accuracy = 0.9791250228881836
+precision class 0 = 0.9803011417388916
+precision class 1 = 0.6666666865348816
+recall class 0 = 0.998721718788147
+recall class 1 = 0.11299435049295425
+AUC of ROC = 0.858894278857577
+AUC of PRC = 0.26063695651918617
+min(+P, Se) = 0.3107344632768362
+Epoch 00002: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk2.test0.08199162816116587.state
+ - 1153s - loss: 0.0775 - val_loss: 0.0820
+Epoch 3/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15528    18]
+ [  407    47]]
+accuracy = 0.973437488079071
+precision class 0 = 0.9744587540626526
+precision class 1 = 0.7230769395828247
+recall class 0 = 0.9988421201705933
+recall class 1 = 0.10352423042058945
+AUC of ROC = 0.8720131982900257
+AUC of PRC = 0.33072664326170287
+min(+P, Se) = 0.36784140969163
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7818    9]
+ [ 156   17]]
+accuracy = 0.9793750047683716
+precision class 0 = 0.9804364442825317
+precision class 1 = 0.6538461446762085
+recall class 0 = 0.9988501071929932
+recall class 1 = 0.09826589375734329
+AUC of ROC = 0.8735797458183506
+AUC of PRC = 0.2653602858051189
+min(+P, Se) = 0.3063583815028902
+Epoch 00003: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk3.test0.08735904502263293.state
+ - 1167s - loss: 0.0882 - val_loss: 0.0874
+Epoch 4/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15584    10]
+ [  368    38]]
+accuracy = 0.9763749837875366
+precision class 0 = 0.9769307971000671
+precision class 1 = 0.7916666865348816
+recall class 0 = 0.9993587136268616
+recall class 1 = 0.09359605610370636
+AUC of ROC = 0.8687822649989797
+AUC of PRC = 0.3414188360197057
+min(+P, Se) = 0.35467980295566504
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7810    3]
+ [ 176   11]]
+accuracy = 0.9776250123977661
+precision class 0 = 0.9779614210128784
+precision class 1 = 0.7857142686843872
+recall class 0 = 0.9996160268783569
+recall class 1 = 0.05882352963089943
+AUC of ROC = 0.8710157416235521
+AUC of PRC = 0.2780145474688494
+min(+P, Se) = 0.32085561497326204
+Epoch 00004: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk4.test0.08042573328362777.state
+ - 1159s - loss: 0.0931 - val_loss: 0.0804
+Epoch 5/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15581    13]
+ [  362    44]]
+accuracy = 0.9765625
+precision class 0 = 0.9772940874099731
+precision class 1 = 0.7719298005104065
+recall class 0 = 0.9991663694381714
+recall class 1 = 0.10837438702583313
+AUC of ROC = 0.8700817890675395
+AUC of PRC = 0.3296315273015761
+min(+P, Se) = 0.3669950738916256
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7814    9]
+ [ 165   12]]
+accuracy = 0.9782500267028809
+precision class 0 = 0.9793207049369812
+precision class 1 = 0.5714285969734192
+recall class 0 = 0.9988495707511902
+recall class 1 = 0.06779661029577255
+AUC of ROC = 0.8677057582631542
+AUC of PRC = 0.24935128876811294
+min(+P, Se) = 0.32044198895027626
+Epoch 00005: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk5.test0.08330985384713858.state
+ - 1172s - loss: 0.0864 - val_loss: 0.0833
+Epoch 6/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15571    29]
+ [  330    70]]
+accuracy = 0.9775624871253967
+precision class 0 = 0.9792466163635254
+precision class 1 = 0.7070707082748413
+recall class 0 = 0.9981410503387451
+recall class 1 = 0.17499999701976776
+AUC of ROC = 0.9055467147435897
+AUC of PRC = 0.3435256577490736
+min(+P, Se) = 0.3525
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7815   13]
+ [ 151   21]]
+accuracy = 0.9794999957084656
+precision class 0 = 0.9810444116592407
+precision class 1 = 0.6176470518112183
+recall class 0 = 0.9983392953872681
+recall class 1 = 0.12209302186965942
+AUC of ROC = 0.8558981770864281
+AUC of PRC = 0.27686284702709146
+min(+P, Se) = 0.3488372093023256
+Epoch 00006: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk6.test0.08567608623951674.state
+ - 1161s - loss: 0.0884 - val_loss: 0.0857
+Epoch 7/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15562    12]
+ [  393    33]]
+accuracy = 0.9746875166893005
+precision class 0 = 0.9753682017326355
+precision class 1 = 0.7333333492279053
+recall class 0 = 0.9992294907569885
+recall class 1 = 0.07746478915214539
+AUC of ROC = 0.8825371646858162
+AUC of PRC = 0.3318038726007227
+min(+P, Se) = 0.3826291079812207
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7819    3]
+ [ 168   10]]
+accuracy = 0.9786249995231628
+precision class 0 = 0.9789658188819885
+precision class 1 = 0.7692307829856873
+recall class 0 = 0.9996164441108704
+recall class 1 = 0.056179776787757874
+AUC of ROC = 0.8921279364741912
+AUC of PRC = 0.3021002428233017
+min(+P, Se) = 0.35135135135135137
+Epoch 00007: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk7.test0.07000099030300043.state
+ - 1174s - loss: 0.0858 - val_loss: 0.0700
+Epoch 8/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15596    22]
+ [  336    46]]
+accuracy = 0.9776250123977661
+precision class 0 = 0.9789103865623474
+precision class 1 = 0.6764705777168274
+recall class 0 = 0.9985913634300232
+recall class 1 = 0.12041884660720825
+AUC of ROC = 0.8873140402502415
+AUC of PRC = 0.3154447310790832
+min(+P, Se) = 0.34293193717277487
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7799   14]
+ [ 162   25]]
+accuracy = 0.9779999852180481
+precision class 0 = 0.9796507954597473
+precision class 1 = 0.6410256624221802
+recall class 0 = 0.9982081055641174
+recall class 1 = 0.13368983566761017
+AUC of ROC = 0.8817711602286331
+AUC of PRC = 0.27532157306549865
+min(+P, Se) = 0.3155080213903743
+Epoch 00008: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk8.test0.08096460146876051.state
+ - 1195s - loss: 0.0840 - val_loss: 0.0810
+Epoch 9/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15539    33]
+ [  355    73]]
+accuracy = 0.9757500290870667
+precision class 0 = 0.9776645302772522
+precision class 1 = 0.6886792182922363
+recall class 0 = 0.9978808164596558
+recall class 1 = 0.17056074738502502
+AUC of ROC = 0.8851296119802857
+AUC of PRC = 0.3675845418115081
+min(+P, Se) = 0.40420560747663553
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7797   17]
+ [ 166   20]]
+accuracy = 0.9771249890327454
+precision class 0 = 0.979153573513031
+precision class 1 = 0.5405405163764954
+recall class 0 = 0.9978244304656982
+recall class 1 = 0.10752688348293304
+AUC of ROC = 0.8827600584558732
+AUC of PRC = 0.2412068479591651
+min(+P, Se) = 0.27040816326530615
+Epoch 00009: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk9.test0.0727659769046586.state
+ - 1174s - loss: 0.0892 - val_loss: 0.0728
+Epoch 10/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15543    20]
+ [  385    52]]
+accuracy = 0.9746875166893005
+precision class 0 = 0.9758287072181702
+precision class 1 = 0.7222222089767456
+recall class 0 = 0.9987149238586426
+recall class 1 = 0.1189931333065033
+AUC of ROC = 0.8944493856887287
+AUC of PRC = 0.35620457303057756
+min(+P, Se) = 0.3775280898876405
+
+==>predicting on validation
+
+
+confusion matrix:
+[[7840    4]
+ [ 140   16]]
+accuracy = 0.9819999933242798
+precision class 0 = 0.9824561476707458
+precision class 1 = 0.800000011920929
+recall class 0 = 0.9994900822639465
+recall class 1 = 0.10256410390138626
+AUC of ROC = 0.8525779952666745
+AUC of PRC = 0.25826174450466
+min(+P, Se) = 0.28846153846153844
+Epoch 00010: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk10.test0.0715068476689048.state
+ - 1168s - loss: 0.0813 - val_loss: 0.0715
+16332.39user 1422.71system 3:19:08elapsed 148%CPU (0avgtext+0avgdata 18715448maxresident)k
+840inputs+25472outputs (0major+8612497minor)pagefaults 0swaps
