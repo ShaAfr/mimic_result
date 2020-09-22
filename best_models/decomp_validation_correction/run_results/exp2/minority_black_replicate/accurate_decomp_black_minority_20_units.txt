@@ -1,0 +1,134 @@
+****************20_unit***********
+Using TensorFlow backend.
+Namespace(batch_norm=False, batch_size=8, beta_1=0.9, data='/home/danfeng/project/try/mimic3-benchmarks/mimic3models/decompensation/../../data/decompensation/', deep_supervision=False, depth=1, dim=128, dropout=0.0, epochs=100, imputation='previous', l1=0, l2=0, load_state='', lr=0.001, mode='train', network='mimic3models/keras_models/lstm.py', normalizer_state=None, optimizer='adam', output_dir='mimic3models/decompensation', prefix='', rec_dropout=0.0, save_every=1, size_coef=4.0, small_part=False, timestep=1.0, verbose=2)
+==> using model mimic3models/keras_models/lstm.py
+==> not used params in network class: dict_keys(['batch_size', 'beta_1', 'data', 'epochs', 'imputation', 'l1', 'l2', 'load_state', 'lr', 'mode', 'network', 'normalizer_state', 'optimizer', 'output_dir', 'prefix', 'save_every', 'size_coef', 'small_part', 'timestep', 'verbose', 'header'])
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1364: calling reduce_any (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1247: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+==> model.final_name: k_lstm.n128.dep1.bs8.ts1.0
+==> compiling the model
+WARNING:tensorflow:From /home/danfeng/anaconda3/envs/shaenvgpu/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1349: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+X (InputLayer)               (None, None, 76)          0         
+_________________________________________________________________
+masking_1 (Masking)          (None, None, 76)          0         
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 128)               104960    
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 129       
+=================================================================
+Total params: 105,089
+Trainable params: 105,089
+Non-trainable params: 0
+_________________________________________________________________
+==> training
+Epoch 1/100
+2020-09-14 15:56:41.966276: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+
+==>predicting on train
+
+
+confusion matrix:
+[[15203    21]
+ [  669   107]]
+accuracy = 0.9568750262260437
+precision class 0 = 0.9578502774238586
+precision class 1 = 0.8359375
+recall class 0 = 0.9986205697059631
+recall class 1 = 0.13788659870624542
+AUC of ROC = 0.8731778127048448
+AUC of PRC = 0.4048484657714612
+min(+P, Se) = 0.40850515463917525
+
+==>predicting on validation
+
+
+confusion matrix:
+[[4245    7]
+ [3388  360]]
+accuracy = 0.5756250023841858
+precision class 0 = 0.5561378002166748
+precision class 1 = 0.9809264540672302
+recall class 0 = 0.9983537197113037
+recall class 1 = 0.09605123102664948
+AUC of ROC = 0.8547450455859307
+AUC of PRC = 0.8384937102033483
+min(+P, Se) = 0.7662753468516542
+Epoch 00001: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk1.test2.6672779494524.state
+ - 1204s - loss: 0.1433 - val_loss: 2.6673
+Epoch 2/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15166    37]
+ [  670   127]]
+accuracy = 0.9558125138282776
+precision class 0 = 0.9576913118362427
+precision class 1 = 0.7743902206420898
+recall class 0 = 0.997566282749176
+recall class 1 = 0.1593475490808487
+AUC of ROC = 0.8783374657531026
+AUC of PRC = 0.41929197295551024
+min(+P, Se) = 0.4366373902132999
+
+==>predicting on validation
+
+
+confusion matrix:
+[[  51    0]
+ [7054  895]]
+accuracy = 0.11824999749660492
+precision class 0 = 0.007178043480962515
+precision class 1 = 1.0
+recall class 0 = 1.0
+recall class 1 = 0.11259277909994125
+AUC of ROC = 0.9318794570287544
+AUC of PRC = 0.9995012933859548
+min(+P, Se) = 0.9949698189134809
+Epoch 00002: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk2.test0.1793119995314628.state
+ - 971s - loss: 0.1334 - val_loss: 0.1793
+Epoch 3/100
+
+==>predicting on train
+
+
+confusion matrix:
+[[15213    31]
+ [  621   135]]
+accuracy = 0.9592499732971191
+precision class 0 = 0.9607806205749512
+precision class 1 = 0.8132529854774475
+recall class 0 = 0.9979664087295532
+recall class 1 = 0.1785714328289032
+AUC of ROC = 0.8888858518712888
+AUC of PRC = 0.4599132974571678
+min(+P, Se) = 0.4576719576719577
+
+==>predicting on validation
+
+
+confusion matrix:
+[[6848   13]
+ [ 996  143]]
+accuracy = 0.8738750219345093
+precision class 0 = 0.8730239868164062
+precision class 1 = 0.9166666865348816
+recall class 0 = 0.9981052279472351
+recall class 1 = 0.12554872035980225
+AUC of ROC = 0.8586174812810609
+AUC of PRC = 0.5835606920844031
+min(+P, Se) = 0.5486415425065732
+Epoch 00003: saving model to mimic3models/decompensation/keras_states/k_lstm.n128.dep1.bs8.ts1.0.chunk3.test0.9955787851600908.state
+ - 959s - loss: 0.1284 - val_loss: 0.9956
+4869.36user 869.41system 52:29.80elapsed 182%CPU (0avgtext+0avgdata 18031508maxresident)k
+0inputs+7656outputs (0major+24831608minor)pagefaults 0swaps
